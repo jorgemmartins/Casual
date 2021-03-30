@@ -7,16 +7,22 @@ import ply.yacc as yacc
 import ply.lex as lex
 
 # Reserved keywords
-keywords = (
+keywords = {
     # Types
-    'INT', 'FLOAT', 'STRING', 'BOOLEAN',
+    'Int': 'INT',
+    'Float': 'FLOAT',
+    'String': 'STRING',
+    'Boolean': 'BOOLEAN',
     # Conditional
-    'IF', 'ELSE',
+    'if': 'IF',
+    'else': 'ELSE',
+    'def': 'DEF',
+    'decl': 'DECL',
     # Misc
-    'RETURN', 'DEF'
-)
+    'return': 'RETURN'
+}
 
-tokens = (
+tokens = list(keywords.values()) + [
     # Operators
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'MOD',
     'OR', 'AND', 'NOT',
@@ -30,14 +36,14 @@ tokens = (
     'LPAREN', 'RPAREN',
     'LBRACE', 'RBRACE',
     'LBRACKET', 'RBRACKET',
-    'SEMI', 'COLON',
+    'SEMI', 'COLON', 'COMMA',
 
     # Comments
-    'POUND',
+    'COMMENT',
 
     # Values
-    'INTEGER', 'BOOL', 'FLOAT', 'STRING', 'NAME'
-)
+    'ID', 'FLOAT_CONST', 'INT_CONST', 'BOOLEAN_CONST', 'STRING_CONST'
+]
 
 # Operators
 t_PLUS = r'\+'
@@ -67,17 +73,20 @@ t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
 t_SEMI = r';'
 t_COLON = r':'
-
-# Comments
-t_POUND = r'#'
-
-# Values
-t_NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
-t_BOOL = r'true|false'
-t_STRING = r'\"([^\\\"]|\\.)*\"'
+t_COMMA = r'\,'
 
 
-def t_INTEGER(t):
+def t_FLOAT_CONST(t):
+    r'(\d*)?[.]\d+'
+    try:
+        t.value = float(t.value)
+    except ValueError:
+        print("Float value too large %d", t.value)
+        t.value = 0.0
+    return t
+
+
+def t_INT_CONST(t):
     r'\d((_|\d)*\d)?'
     try:
         t.value = int(t.value)
@@ -87,14 +96,35 @@ def t_INTEGER(t):
     return t
 
 
-def t_FLOAT(t):
-    r'(\d*[.])?\d+'
+def t_STRING_CONST(t):
+    r'\"([^\\\"]|\\.)*\"'
     try:
-        t.value = float(t.value)
+        t.value = str(t.value)[1:-1]  # removing the ""
     except ValueError:
-        print("Float value too large %d", t.value)
-        t.value = 0.0
+        print("Not a string %s", t.value)
+        t.value = ""
     return t
+
+
+def t_BOOLEAN_CONST(t):
+    r'true|false'
+    try:
+        t.value = bool(t.value)
+    except ValueError:
+        print("Not a boolean %b", t.value)
+        t.value = ""
+    return t
+
+
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
+    t.type = keywords.get(t.value, 'ID')    # Check for reserved words
+    return t
+
+
+def t_COMMENT(t):
+    r'\#.*\n'
+    pass  # ignore this token
 
 
 # Ignored characters
@@ -106,10 +136,28 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
 
 
-def t_error(t):  # need to add column + line
+# Error handling rule
+def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
 
+def find_column(input, token):
+    line_start = input.rfind('\n', 0, token.lexpos) + 1
+    return (token.lexpos - line_start) + 1
+
+
 # Build the lexer
 lexer = lex.lex()
+
+# dictionary of names
+names = {}
+
+
+"""
+#Grammar Definition:
+
+fewfw
+"""
+
+parser = yacc.yacc()
