@@ -1,3 +1,0 @@
-def max (a:Int, b:Int):Int {
-  return 1+1;
-}

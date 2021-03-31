@@ -2300,49 +2300,36 @@ state 91
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    PLUS            reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    MINUS           reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    TIMES           reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    DIVIDE          reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    MOD             reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    AND             reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    OR              reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    LT              reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    GT              reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    LE              reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    GE              reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    EQ              reduce using rule 57 (expression_unary_operation -> MINUS expression .)
+    NEQ             reduce using rule 57 (expression_unary_operation -> MINUS expression .)
     LBRACE          reduce using rule 57 (expression_unary_operation -> MINUS expression .)
     RBRACKET        reduce using rule 57 (expression_unary_operation -> MINUS expression .)
-    PLUS            shift and go to state 67
-    MINUS           shift and go to state 68
-    TIMES           shift and go to state 69
-    DIVIDE          shift and go to state 70
-    MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
-  ! PLUS            [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! MINUS           [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! TIMES           [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! DIVIDE          [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! MOD             [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! AND             [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! OR              [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! LT              [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! GT              [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! LE              [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! GE              [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! EQ              [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
-  ! NEQ             [ reduce using rule 57 (expression_unary_operation -> MINUS expression .) ]
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! TIMES           [ shift and go to state 69 ]
+  ! DIVIDE          [ shift and go to state 70 ]
+  ! MOD             [ shift and go to state 71 ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 92
@@ -2362,49 +2349,36 @@ state 92
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    PLUS            reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    MINUS           reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    TIMES           reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    DIVIDE          reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    MOD             reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    AND             reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    OR              reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    LT              reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    GT              reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    LE              reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    GE              reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    EQ              reduce using rule 56 (expression_unary_operation -> NOT expression .)
+    NEQ             reduce using rule 56 (expression_unary_operation -> NOT expression .)
     LBRACE          reduce using rule 56 (expression_unary_operation -> NOT expression .)
     RBRACKET        reduce using rule 56 (expression_unary_operation -> NOT expression .)
-    PLUS            shift and go to state 67
-    MINUS           shift and go to state 68
-    TIMES           shift and go to state 69
-    DIVIDE          shift and go to state 70
-    MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
-  ! PLUS            [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! MINUS           [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! TIMES           [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! DIVIDE          [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! MOD             [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! AND             [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! OR              [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! LT              [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! GT              [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! LE              [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! GE              [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! EQ              [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
-  ! NEQ             [ reduce using rule 56 (expression_unary_operation -> NOT expression .) ]
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! TIMES           [ shift and go to state 69 ]
+  ! DIVIDE          [ shift and go to state 70 ]
+  ! MOD             [ shift and go to state 71 ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 93
@@ -2424,49 +2398,36 @@ state 93
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    PLUS            reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    MINUS           reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    AND             reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    OR              reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    LT              reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    GT              reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    LE              reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    GE              reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    EQ              reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
+    NEQ             reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
     LBRACE          reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
     RBRACKET        reduce using rule 42 (expression_binary_operation -> expression PLUS expression .)
-    PLUS            shift and go to state 67
-    MINUS           shift and go to state 68
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
-  ! PLUS            [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
-  ! MINUS           [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
   ! TIMES           [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
   ! DIVIDE          [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
   ! MOD             [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
-  ! AND             [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
-  ! OR              [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
-  ! LT              [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
-  ! GT              [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
-  ! LE              [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
-  ! GE              [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
-  ! EQ              [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
-  ! NEQ             [ reduce using rule 42 (expression_binary_operation -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 94
@@ -2486,49 +2447,36 @@ state 94
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    PLUS            reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    MINUS           reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    AND             reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    OR              reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    LT              reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    GT              reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    LE              reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    GE              reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    EQ              reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
+    NEQ             reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
     LBRACE          reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
     RBRACKET        reduce using rule 43 (expression_binary_operation -> expression MINUS expression .)
-    PLUS            shift and go to state 67
-    MINUS           shift and go to state 68
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
-  ! PLUS            [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
-  ! MINUS           [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
   ! TIMES           [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
   ! DIVIDE          [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
   ! MOD             [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
-  ! AND             [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
-  ! OR              [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
-  ! LT              [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
-  ! GT              [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
-  ! LE              [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
-  ! GE              [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
-  ! EQ              [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
-  ! NEQ             [ reduce using rule 43 (expression_binary_operation -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 95
@@ -2548,49 +2496,36 @@ state 95
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    PLUS            reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    MINUS           reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    TIMES           reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    DIVIDE          reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    MOD             reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    AND             reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    OR              reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    LT              reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    GT              reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    LE              reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    GE              reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    EQ              reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
+    NEQ             reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
     LBRACE          reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
     RBRACKET        reduce using rule 44 (expression_binary_operation -> expression TIMES expression .)
-    PLUS            shift and go to state 67
-    MINUS           shift and go to state 68
-    TIMES           shift and go to state 69
-    DIVIDE          shift and go to state 70
-    MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
-  ! PLUS            [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! MINUS           [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! TIMES           [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! DIVIDE          [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! MOD             [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! AND             [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! OR              [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! LT              [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! GT              [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! LE              [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! GE              [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! EQ              [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
-  ! NEQ             [ reduce using rule 44 (expression_binary_operation -> expression TIMES expression .) ]
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! TIMES           [ shift and go to state 69 ]
+  ! DIVIDE          [ shift and go to state 70 ]
+  ! MOD             [ shift and go to state 71 ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 96
@@ -2610,49 +2545,36 @@ state 96
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    PLUS            reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    MINUS           reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    TIMES           reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    MOD             reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    AND             reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    OR              reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    LT              reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    GT              reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    LE              reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    GE              reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    EQ              reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
+    NEQ             reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
     LBRACE          reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
     RBRACKET        reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .)
-    PLUS            shift and go to state 67
-    MINUS           shift and go to state 68
-    TIMES           shift and go to state 69
-    DIVIDE          shift and go to state 70
-    MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
-  ! PLUS            [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! MINUS           [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! TIMES           [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! DIVIDE          [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! MOD             [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! AND             [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! OR              [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! LT              [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! GT              [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! LE              [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! GE              [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! EQ              [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
-  ! NEQ             [ reduce using rule 45 (expression_binary_operation -> expression DIVIDE expression .) ]
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! TIMES           [ shift and go to state 69 ]
+  ! DIVIDE          [ shift and go to state 70 ]
+  ! MOD             [ shift and go to state 71 ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 97
@@ -2672,49 +2594,36 @@ state 97
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    PLUS            reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    MINUS           reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    TIMES           reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    DIVIDE          reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    MOD             reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    AND             reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    OR              reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    LT              reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    GT              reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    LE              reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    GE              reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    EQ              reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
+    NEQ             reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
     LBRACE          reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
     RBRACKET        reduce using rule 46 (expression_binary_operation -> expression MOD expression .)
-    PLUS            shift and go to state 67
-    MINUS           shift and go to state 68
-    TIMES           shift and go to state 69
-    DIVIDE          shift and go to state 70
-    MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
-  ! PLUS            [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! MINUS           [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! TIMES           [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! DIVIDE          [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! MOD             [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! AND             [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! OR              [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! LT              [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! GT              [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! LE              [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! GE              [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! EQ              [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
-  ! NEQ             [ reduce using rule 46 (expression_binary_operation -> expression MOD expression .) ]
+  ! PLUS            [ shift and go to state 67 ]
+  ! MINUS           [ shift and go to state 68 ]
+  ! TIMES           [ shift and go to state 69 ]
+  ! DIVIDE          [ shift and go to state 70 ]
+  ! MOD             [ shift and go to state 71 ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 98
@@ -2734,20 +2643,15 @@ state 98
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 47 (expression_binary_operation -> expression AND expression .)
+    AND             reduce using rule 47 (expression_binary_operation -> expression AND expression .)
+    OR              reduce using rule 47 (expression_binary_operation -> expression AND expression .)
+    LT              reduce using rule 47 (expression_binary_operation -> expression AND expression .)
+    GT              reduce using rule 47 (expression_binary_operation -> expression AND expression .)
+    LE              reduce using rule 47 (expression_binary_operation -> expression AND expression .)
+    GE              reduce using rule 47 (expression_binary_operation -> expression AND expression .)
+    EQ              reduce using rule 47 (expression_binary_operation -> expression AND expression .)
+    NEQ             reduce using rule 47 (expression_binary_operation -> expression AND expression .)
     LBRACE          reduce using rule 47 (expression_binary_operation -> expression AND expression .)
     RBRACKET        reduce using rule 47 (expression_binary_operation -> expression AND expression .)
     PLUS            shift and go to state 67
@@ -2755,28 +2659,20 @@ state 98
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
   ! PLUS            [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
   ! MINUS           [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
   ! TIMES           [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
   ! DIVIDE          [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
   ! MOD             [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
-  ! AND             [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
-  ! OR              [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
-  ! LT              [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
-  ! GT              [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
-  ! LE              [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
-  ! GE              [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
-  ! EQ              [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
-  ! NEQ             [ reduce using rule 47 (expression_binary_operation -> expression AND expression .) ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 99
@@ -2796,20 +2692,15 @@ state 99
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 48 (expression_binary_operation -> expression OR expression .)
+    AND             reduce using rule 48 (expression_binary_operation -> expression OR expression .)
+    OR              reduce using rule 48 (expression_binary_operation -> expression OR expression .)
+    LT              reduce using rule 48 (expression_binary_operation -> expression OR expression .)
+    GT              reduce using rule 48 (expression_binary_operation -> expression OR expression .)
+    LE              reduce using rule 48 (expression_binary_operation -> expression OR expression .)
+    GE              reduce using rule 48 (expression_binary_operation -> expression OR expression .)
+    EQ              reduce using rule 48 (expression_binary_operation -> expression OR expression .)
+    NEQ             reduce using rule 48 (expression_binary_operation -> expression OR expression .)
     LBRACE          reduce using rule 48 (expression_binary_operation -> expression OR expression .)
     RBRACKET        reduce using rule 48 (expression_binary_operation -> expression OR expression .)
     PLUS            shift and go to state 67
@@ -2817,28 +2708,20 @@ state 99
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
   ! PLUS            [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
   ! MINUS           [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
   ! TIMES           [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
   ! DIVIDE          [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
   ! MOD             [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
-  ! AND             [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
-  ! OR              [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
-  ! LT              [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
-  ! GT              [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
-  ! LE              [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
-  ! GE              [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
-  ! EQ              [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
-  ! NEQ             [ reduce using rule 48 (expression_binary_operation -> expression OR expression .) ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 100
@@ -2858,20 +2741,15 @@ state 100
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 49 (expression_binary_operation -> expression LT expression .)
+    AND             reduce using rule 49 (expression_binary_operation -> expression LT expression .)
+    OR              reduce using rule 49 (expression_binary_operation -> expression LT expression .)
+    LT              reduce using rule 49 (expression_binary_operation -> expression LT expression .)
+    GT              reduce using rule 49 (expression_binary_operation -> expression LT expression .)
+    LE              reduce using rule 49 (expression_binary_operation -> expression LT expression .)
+    GE              reduce using rule 49 (expression_binary_operation -> expression LT expression .)
+    EQ              reduce using rule 49 (expression_binary_operation -> expression LT expression .)
+    NEQ             reduce using rule 49 (expression_binary_operation -> expression LT expression .)
     LBRACE          reduce using rule 49 (expression_binary_operation -> expression LT expression .)
     RBRACKET        reduce using rule 49 (expression_binary_operation -> expression LT expression .)
     PLUS            shift and go to state 67
@@ -2879,28 +2757,20 @@ state 100
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
   ! PLUS            [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
   ! MINUS           [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
   ! TIMES           [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
   ! DIVIDE          [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
   ! MOD             [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
-  ! AND             [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
-  ! OR              [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
-  ! LT              [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
-  ! GT              [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
-  ! LE              [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
-  ! GE              [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
-  ! EQ              [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
-  ! NEQ             [ reduce using rule 49 (expression_binary_operation -> expression LT expression .) ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 101
@@ -2920,20 +2790,15 @@ state 101
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 50 (expression_binary_operation -> expression GT expression .)
+    AND             reduce using rule 50 (expression_binary_operation -> expression GT expression .)
+    OR              reduce using rule 50 (expression_binary_operation -> expression GT expression .)
+    LT              reduce using rule 50 (expression_binary_operation -> expression GT expression .)
+    GT              reduce using rule 50 (expression_binary_operation -> expression GT expression .)
+    LE              reduce using rule 50 (expression_binary_operation -> expression GT expression .)
+    GE              reduce using rule 50 (expression_binary_operation -> expression GT expression .)
+    EQ              reduce using rule 50 (expression_binary_operation -> expression GT expression .)
+    NEQ             reduce using rule 50 (expression_binary_operation -> expression GT expression .)
     LBRACE          reduce using rule 50 (expression_binary_operation -> expression GT expression .)
     RBRACKET        reduce using rule 50 (expression_binary_operation -> expression GT expression .)
     PLUS            shift and go to state 67
@@ -2941,28 +2806,20 @@ state 101
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
   ! PLUS            [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
   ! MINUS           [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
   ! TIMES           [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
   ! DIVIDE          [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
   ! MOD             [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
-  ! AND             [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
-  ! OR              [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
-  ! LT              [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
-  ! GT              [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
-  ! LE              [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
-  ! GE              [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
-  ! EQ              [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
-  ! NEQ             [ reduce using rule 50 (expression_binary_operation -> expression GT expression .) ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 102
@@ -2982,20 +2839,15 @@ state 102
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 51 (expression_binary_operation -> expression LE expression .)
+    AND             reduce using rule 51 (expression_binary_operation -> expression LE expression .)
+    OR              reduce using rule 51 (expression_binary_operation -> expression LE expression .)
+    LT              reduce using rule 51 (expression_binary_operation -> expression LE expression .)
+    GT              reduce using rule 51 (expression_binary_operation -> expression LE expression .)
+    LE              reduce using rule 51 (expression_binary_operation -> expression LE expression .)
+    GE              reduce using rule 51 (expression_binary_operation -> expression LE expression .)
+    EQ              reduce using rule 51 (expression_binary_operation -> expression LE expression .)
+    NEQ             reduce using rule 51 (expression_binary_operation -> expression LE expression .)
     LBRACE          reduce using rule 51 (expression_binary_operation -> expression LE expression .)
     RBRACKET        reduce using rule 51 (expression_binary_operation -> expression LE expression .)
     PLUS            shift and go to state 67
@@ -3003,28 +2855,20 @@ state 102
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
   ! PLUS            [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
   ! MINUS           [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
   ! TIMES           [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
   ! DIVIDE          [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
   ! MOD             [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
-  ! AND             [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
-  ! OR              [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
-  ! LT              [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
-  ! GT              [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
-  ! LE              [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
-  ! GE              [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
-  ! EQ              [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
-  ! NEQ             [ reduce using rule 51 (expression_binary_operation -> expression LE expression .) ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 103
@@ -3044,20 +2888,15 @@ state 103
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 52 (expression_binary_operation -> expression GE expression .)
+    AND             reduce using rule 52 (expression_binary_operation -> expression GE expression .)
+    OR              reduce using rule 52 (expression_binary_operation -> expression GE expression .)
+    LT              reduce using rule 52 (expression_binary_operation -> expression GE expression .)
+    GT              reduce using rule 52 (expression_binary_operation -> expression GE expression .)
+    LE              reduce using rule 52 (expression_binary_operation -> expression GE expression .)
+    GE              reduce using rule 52 (expression_binary_operation -> expression GE expression .)
+    EQ              reduce using rule 52 (expression_binary_operation -> expression GE expression .)
+    NEQ             reduce using rule 52 (expression_binary_operation -> expression GE expression .)
     LBRACE          reduce using rule 52 (expression_binary_operation -> expression GE expression .)
     RBRACKET        reduce using rule 52 (expression_binary_operation -> expression GE expression .)
     PLUS            shift and go to state 67
@@ -3065,28 +2904,20 @@ state 103
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
   ! PLUS            [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
   ! MINUS           [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
   ! TIMES           [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
   ! DIVIDE          [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
   ! MOD             [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
-  ! AND             [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
-  ! OR              [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
-  ! LT              [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
-  ! GT              [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
-  ! LE              [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
-  ! GE              [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
-  ! EQ              [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
-  ! NEQ             [ reduce using rule 52 (expression_binary_operation -> expression GE expression .) ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 104
@@ -3106,20 +2937,15 @@ state 104
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
+    AND             reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
+    OR              reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
+    LT              reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
+    GT              reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
+    LE              reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
+    GE              reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
+    EQ              reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
+    NEQ             reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
     LBRACE          reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
     RBRACKET        reduce using rule 53 (expression_binary_operation -> expression EQ expression .)
     PLUS            shift and go to state 67
@@ -3127,28 +2953,20 @@ state 104
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
   ! PLUS            [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
   ! MINUS           [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
   ! TIMES           [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
   ! DIVIDE          [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
   ! MOD             [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
-  ! AND             [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
-  ! OR              [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
-  ! LT              [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
-  ! GT              [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
-  ! LE              [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
-  ! GE              [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
-  ! EQ              [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
-  ! NEQ             [ reduce using rule 53 (expression_binary_operation -> expression EQ expression .) ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 105
@@ -3168,20 +2986,15 @@ state 105
     (53) expression_binary_operation -> expression . EQ expression
     (54) expression_binary_operation -> expression . NEQ expression
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MOD resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for NEQ resolved as shift
     SEMI            reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
+    AND             reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
+    OR              reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
+    LT              reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
+    GT              reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
+    LE              reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
+    GE              reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
+    EQ              reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
+    NEQ             reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
     LBRACE          reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
     RBRACKET        reduce using rule 54 (expression_binary_operation -> expression NEQ expression .)
     PLUS            shift and go to state 67
@@ -3189,28 +3002,20 @@ state 105
     TIMES           shift and go to state 69
     DIVIDE          shift and go to state 70
     MOD             shift and go to state 71
-    AND             shift and go to state 72
-    OR              shift and go to state 73
-    LT              shift and go to state 74
-    GT              shift and go to state 75
-    LE              shift and go to state 76
-    GE              shift and go to state 77
-    EQ              shift and go to state 78
-    NEQ             shift and go to state 79
 
   ! PLUS            [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
   ! MINUS           [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
   ! TIMES           [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
   ! DIVIDE          [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
   ! MOD             [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
-  ! AND             [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
-  ! OR              [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
-  ! LT              [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
-  ! GT              [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
-  ! LE              [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
-  ! GE              [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
-  ! EQ              [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
-  ! NEQ             [ reduce using rule 54 (expression_binary_operation -> expression NEQ expression .) ]
+  ! AND             [ shift and go to state 72 ]
+  ! OR              [ shift and go to state 73 ]
+  ! LT              [ shift and go to state 74 ]
+  ! GT              [ shift and go to state 75 ]
+  ! LE              [ shift and go to state 76 ]
+  ! GE              [ shift and go to state 77 ]
+  ! EQ              [ shift and go to state 78 ]
+  ! NEQ             [ shift and go to state 79 ]
 
 
 state 106
@@ -3725,201 +3530,3 @@ state 130
     LBRACE          reduce using rule 68 (index_access_aux -> LPAREN func_invocation_args RPAREN LBRACKET expression RBRACKET .)
     RBRACKET        reduce using rule 68 (index_access_aux -> LPAREN func_invocation_args RPAREN LBRACKET expression RBRACKET .)
 
-WARNING: 
-WARNING: Conflicts:
-WARNING: 
-WARNING: shift/reduce conflict for PLUS in state 91 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 91 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 91 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 91 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 91 resolved as shift
-WARNING: shift/reduce conflict for AND in state 91 resolved as shift
-WARNING: shift/reduce conflict for OR in state 91 resolved as shift
-WARNING: shift/reduce conflict for LT in state 91 resolved as shift
-WARNING: shift/reduce conflict for GT in state 91 resolved as shift
-WARNING: shift/reduce conflict for LE in state 91 resolved as shift
-WARNING: shift/reduce conflict for GE in state 91 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 91 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 91 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 92 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 92 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 92 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 92 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 92 resolved as shift
-WARNING: shift/reduce conflict for AND in state 92 resolved as shift
-WARNING: shift/reduce conflict for OR in state 92 resolved as shift
-WARNING: shift/reduce conflict for LT in state 92 resolved as shift
-WARNING: shift/reduce conflict for GT in state 92 resolved as shift
-WARNING: shift/reduce conflict for LE in state 92 resolved as shift
-WARNING: shift/reduce conflict for GE in state 92 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 92 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 92 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 93 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 93 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 93 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 93 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 93 resolved as shift
-WARNING: shift/reduce conflict for AND in state 93 resolved as shift
-WARNING: shift/reduce conflict for OR in state 93 resolved as shift
-WARNING: shift/reduce conflict for LT in state 93 resolved as shift
-WARNING: shift/reduce conflict for GT in state 93 resolved as shift
-WARNING: shift/reduce conflict for LE in state 93 resolved as shift
-WARNING: shift/reduce conflict for GE in state 93 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 93 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 93 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 94 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 94 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 94 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 94 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 94 resolved as shift
-WARNING: shift/reduce conflict for AND in state 94 resolved as shift
-WARNING: shift/reduce conflict for OR in state 94 resolved as shift
-WARNING: shift/reduce conflict for LT in state 94 resolved as shift
-WARNING: shift/reduce conflict for GT in state 94 resolved as shift
-WARNING: shift/reduce conflict for LE in state 94 resolved as shift
-WARNING: shift/reduce conflict for GE in state 94 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 94 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 94 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 95 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 95 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 95 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 95 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 95 resolved as shift
-WARNING: shift/reduce conflict for AND in state 95 resolved as shift
-WARNING: shift/reduce conflict for OR in state 95 resolved as shift
-WARNING: shift/reduce conflict for LT in state 95 resolved as shift
-WARNING: shift/reduce conflict for GT in state 95 resolved as shift
-WARNING: shift/reduce conflict for LE in state 95 resolved as shift
-WARNING: shift/reduce conflict for GE in state 95 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 95 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 95 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 96 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 96 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 96 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 96 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 96 resolved as shift
-WARNING: shift/reduce conflict for AND in state 96 resolved as shift
-WARNING: shift/reduce conflict for OR in state 96 resolved as shift
-WARNING: shift/reduce conflict for LT in state 96 resolved as shift
-WARNING: shift/reduce conflict for GT in state 96 resolved as shift
-WARNING: shift/reduce conflict for LE in state 96 resolved as shift
-WARNING: shift/reduce conflict for GE in state 96 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 96 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 96 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 97 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 97 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 97 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 97 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 97 resolved as shift
-WARNING: shift/reduce conflict for AND in state 97 resolved as shift
-WARNING: shift/reduce conflict for OR in state 97 resolved as shift
-WARNING: shift/reduce conflict for LT in state 97 resolved as shift
-WARNING: shift/reduce conflict for GT in state 97 resolved as shift
-WARNING: shift/reduce conflict for LE in state 97 resolved as shift
-WARNING: shift/reduce conflict for GE in state 97 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 97 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 97 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 98 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 98 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 98 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 98 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 98 resolved as shift
-WARNING: shift/reduce conflict for AND in state 98 resolved as shift
-WARNING: shift/reduce conflict for OR in state 98 resolved as shift
-WARNING: shift/reduce conflict for LT in state 98 resolved as shift
-WARNING: shift/reduce conflict for GT in state 98 resolved as shift
-WARNING: shift/reduce conflict for LE in state 98 resolved as shift
-WARNING: shift/reduce conflict for GE in state 98 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 98 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 98 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 99 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 99 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 99 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 99 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 99 resolved as shift
-WARNING: shift/reduce conflict for AND in state 99 resolved as shift
-WARNING: shift/reduce conflict for OR in state 99 resolved as shift
-WARNING: shift/reduce conflict for LT in state 99 resolved as shift
-WARNING: shift/reduce conflict for GT in state 99 resolved as shift
-WARNING: shift/reduce conflict for LE in state 99 resolved as shift
-WARNING: shift/reduce conflict for GE in state 99 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 99 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 99 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 100 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 100 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 100 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 100 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 100 resolved as shift
-WARNING: shift/reduce conflict for AND in state 100 resolved as shift
-WARNING: shift/reduce conflict for OR in state 100 resolved as shift
-WARNING: shift/reduce conflict for LT in state 100 resolved as shift
-WARNING: shift/reduce conflict for GT in state 100 resolved as shift
-WARNING: shift/reduce conflict for LE in state 100 resolved as shift
-WARNING: shift/reduce conflict for GE in state 100 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 100 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 100 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 101 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 101 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 101 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 101 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 101 resolved as shift
-WARNING: shift/reduce conflict for AND in state 101 resolved as shift
-WARNING: shift/reduce conflict for OR in state 101 resolved as shift
-WARNING: shift/reduce conflict for LT in state 101 resolved as shift
-WARNING: shift/reduce conflict for GT in state 101 resolved as shift
-WARNING: shift/reduce conflict for LE in state 101 resolved as shift
-WARNING: shift/reduce conflict for GE in state 101 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 101 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 101 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 102 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 102 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 102 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 102 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 102 resolved as shift
-WARNING: shift/reduce conflict for AND in state 102 resolved as shift
-WARNING: shift/reduce conflict for OR in state 102 resolved as shift
-WARNING: shift/reduce conflict for LT in state 102 resolved as shift
-WARNING: shift/reduce conflict for GT in state 102 resolved as shift
-WARNING: shift/reduce conflict for LE in state 102 resolved as shift
-WARNING: shift/reduce conflict for GE in state 102 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 102 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 102 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 103 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 103 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 103 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 103 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 103 resolved as shift
-WARNING: shift/reduce conflict for AND in state 103 resolved as shift
-WARNING: shift/reduce conflict for OR in state 103 resolved as shift
-WARNING: shift/reduce conflict for LT in state 103 resolved as shift
-WARNING: shift/reduce conflict for GT in state 103 resolved as shift
-WARNING: shift/reduce conflict for LE in state 103 resolved as shift
-WARNING: shift/reduce conflict for GE in state 103 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 103 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 103 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 104 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 104 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 104 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 104 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 104 resolved as shift
-WARNING: shift/reduce conflict for AND in state 104 resolved as shift
-WARNING: shift/reduce conflict for OR in state 104 resolved as shift
-WARNING: shift/reduce conflict for LT in state 104 resolved as shift
-WARNING: shift/reduce conflict for GT in state 104 resolved as shift
-WARNING: shift/reduce conflict for LE in state 104 resolved as shift
-WARNING: shift/reduce conflict for GE in state 104 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 104 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 104 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 105 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 105 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 105 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 105 resolved as shift
-WARNING: shift/reduce conflict for MOD in state 105 resolved as shift
-WARNING: shift/reduce conflict for AND in state 105 resolved as shift
-WARNING: shift/reduce conflict for OR in state 105 resolved as shift
-WARNING: shift/reduce conflict for LT in state 105 resolved as shift
-WARNING: shift/reduce conflict for GT in state 105 resolved as shift
-WARNING: shift/reduce conflict for LE in state 105 resolved as shift
-WARNING: shift/reduce conflict for GE in state 105 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 105 resolved as shift
-WARNING: shift/reduce conflict for NEQ in state 105 resolved as shift

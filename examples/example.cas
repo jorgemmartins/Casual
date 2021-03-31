@@ -1,0 +1,9 @@
+decl max (a:Int, b:Int):Int
+def max (a:Int, b:Int):Int {
+  if a > b {
+    return a;
+  }
+  return b;
+}
+
+decl max (a:Int, b:Int):Int
