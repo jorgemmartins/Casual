@@ -1,0 +1,7 @@
+def func():String{
+    a:Int = 2;
+    a2:Int = 2_348724782_1;
+    b:String = "fefwfewfw";
+    c:Float = 3.2;
+    d:Boolean = true;
+}

@@ -1,0 +1,5 @@
+#Invalid function name
+#Parser will see a boolean
+def true():Int{
+    a = 1;
+}

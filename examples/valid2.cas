@@ -1,0 +1,7 @@
+def test_while ():Int {
+  a:Int = 1;
+  while true{
+      b:Int = 2;
+  }
+  return a;
+}

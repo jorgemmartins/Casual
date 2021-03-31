@@ -6,8 +6,6 @@
 import sys
 import ply.yacc as yacc
 from lexer import *
-from ast import Node
-
 
 file = open(sys.argv[1], 'r')
 input_data = file.read()
@@ -29,9 +27,9 @@ def p_program(t):
                 | definition program
                 | empty'''
     if len(t) == 3 and t[2]:
-        t[0] = t[1], t[2]
+        t[0] = [t[1]] + t[2]
     elif len(t) == 3 and not t[2]:  # So we wont get an annoying None in the AST
-        t[0] = t[1]
+        t[0] = [t[1]]
 
 
 def p_declaration(t):
@@ -56,6 +54,8 @@ def p_function_args(t):
             t[0] = [(t[3], t[1])]
     elif len(t) == 3:
         t[0] = t[2]
+    else:
+        t[0] = []
 
 
 def p_return_type(t):
@@ -75,8 +75,10 @@ def p_block(t):
 def p_recursive_statement(t):
     '''recursive_statement : statement recursive_statement
                             | empty'''
-    if len(t) == 3:
-        t[0] = (t[1], t[2])
+    if len(t) == 3 and t[2]:
+        t[0] = [t[1]] + t[2]
+    elif len(t) == 3 and not t[2]:
+        t[0] = [t[1]]
 
 
 def p_statement(t):
@@ -111,6 +113,8 @@ def p_else_statement(t):  # else
                 | empty'''
     if len(t) == 3:
         t[0] = ('ELSE', t[2])
+    else:
+        t[0] = ('NO_ELSE')
 
 
 def p_while_stmt(t):  # while statement
@@ -165,7 +169,7 @@ def p_expression_binary_operation(t):
 
 def p_expression_variable(t):
     '''expression_variable : ID'''
-    t[0] = t[1]
+    t[0] = ('ID', t[1])
 
 
 def p_expression_unary_operation(t):
@@ -205,6 +209,8 @@ def p_func_invocation_args(t):
             t[0] = [(t[1])]
     elif len(t) == 3 and t[1] == ',':
         t[0] = t[2]
+    else:
+        t[0] = []
 
 
 def p_index_access(t):

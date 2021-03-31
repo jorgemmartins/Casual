@@ -1,6 +1,18 @@
 # Casual Programming Language
 Casual is a programming language designed to be as simple as possible, while being user-friendly.
 
+# How to use the parser
+I provide a setup.sh that installs the dependecies in a ubuntu-based system and a run.sh
+that puts the parser to work.
+Example of usage of run.sh:
+  ```
+  $ ./run.sh examples/valid1.cas
+  ```
+
+I also provide 5 syntatically valid and 4 syntatically invalid programs in the directory examples. Have in mind that you need to pass the
+the directory along with the filename(as shown above) for the script to find the file.
+
+
 ## Language Description
 Comments in Casual are started with the pound (#) character and finish at the end of the line.
 

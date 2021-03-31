@@ -12,7 +12,7 @@ keywords = {
     'Float': 'FLOAT',
     'String': 'STRING',
     'Boolean': 'BOOLEAN',
-    'void': 'VOID',
+    'Void': 'VOID',
     # Conditional statements
     'if': 'IF',
     'else': 'ELSE',

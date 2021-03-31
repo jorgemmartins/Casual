@@ -1,0 +1,5 @@
+#Invalid integer
+def func():Int{
+    a:Int = 1_432_;
+    return a;
+}

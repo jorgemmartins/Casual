@@ -1,0 +1,7 @@
+#Invalid function declaration
+#No return type
+def func(){
+    while a < b{
+        a = a * b;
+    }
+}
