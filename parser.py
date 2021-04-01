@@ -62,8 +62,12 @@ def p_return_type(t):
                     | FLOAT
                     | STRING
                     | BOOLEAN
-                    | VOID'''
-    t[0] = ('RETURN_TYPE', t[1].upper())
+                    | VOID
+                    | LBRACKET var_type RBRACKET'''
+    if len(t) == 1:
+        t[0] = ('RETURN_TYPE', t[1].upper())
+    else:
+        t[0] = ('RETURN_TYPE', '['+t[2]+']')
 
 
 def p_block(t):
@@ -135,8 +139,12 @@ def p_var_type(t):
     '''var_type : FLOAT
                 | INT
                 | STRING
-                | BOOLEAN'''
-    t[0] = t[1].upper()
+                | BOOLEAN
+                | LBRACKET var_type RBRACKET'''
+    if len(t) == 2:
+        t[0] = t[1].upper()
+    else:
+        t[0] = '[' + t[2] + ']'
 
 
 def p_expression(t):

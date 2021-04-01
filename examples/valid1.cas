@@ -1,4 +1,5 @@
-def test_if_else():Int {
+def test_if_else(a:[Int]):[Int] {
+  a:[Int] = 2;
   if a < b{
     return a;
   }
