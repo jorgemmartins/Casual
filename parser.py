@@ -14,11 +14,10 @@ input_data = file.read()
 ###########PARSER############
 #############################
 precedence = (
-    # Not sure here but I believe that I the comparing operators have the least precedence
     ('left', 'LT', 'GT', 'LE', 'GE', 'OR', 'AND', 'EQ', 'NEQ'),
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE', 'MOD'),
-    ('right', 'UMINUS', 'NOT'),
+    ('right', 'NOT'),
 )
 
 
@@ -173,8 +172,7 @@ def p_expression_variable(t):
 
 
 def p_expression_unary_operation(t):
-    '''expression_unary_operation : NOT expression
-                                | MINUS expression %prec UMINUS'''
+    '''expression_unary_operation : NOT expression'''
     t[0] = ('UN_OP', t[1], t[2])
 
 
@@ -199,7 +197,7 @@ def p_function_invocation(t):
 
 
 def p_func_invocation_args(t):
-    '''func_invocation_args : ID func_invocation_args
+    '''func_invocation_args : expression func_invocation_args
                             | COMMA func_invocation_args
                             | empty'''
     if len(t) == 3 and t[1] != ',':
