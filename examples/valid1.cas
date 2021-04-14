@@ -2,6 +2,7 @@ def test_if_else(a:[Int]):[Int] {
   a:[Int] = 2;
   if a < b{
     return a;
+  } else {
+    return f(3, 2+2);
   }
-  return f(3);
 }

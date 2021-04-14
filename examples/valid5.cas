@@ -1,6 +1,6 @@
 decl func ():Int
 decl func2 (a:Int):Int
-def func():String{
+def func():String {
     return;
 }
 decl func3 (a:Int, b:Int):Int

@@ -6,6 +6,7 @@
 import sys
 import ply.yacc as yacc
 from lexer import *
+from ast import *
 
 file = open(sys.argv[1], 'r')
 input_data = file.read()
@@ -33,12 +34,12 @@ def p_program(t):
 
 def p_declaration(t):
     'declaration : DECL ID LPAREN function_args RPAREN COLON return_type'
-    t[0] = ('DECLARE', t[2], t[4], t[7])
+    t[0] = Decl(t[2], t[4], t[7])
 
 
 def p_definition(t):
     'definition : DEF ID LPAREN function_args RPAREN COLON return_type block'
-    t[0] = ('DEFINE', t[2], t[4], t[7], t[8])
+    t[0] = Def(t[2], t[4], t[7], t[8])
 
 
 def p_function_args(t):
@@ -48,9 +49,9 @@ def p_function_args(t):
     if len(t) == 5:
         # im gonna do a list of tuples with the structure
         if t[4]:
-            t[0] = [(t[3], t[1])] + t[4]
+            t[0] = [FuncArg(t[1], t[3])] + t[4]
         else:
-            t[0] = [(t[3], t[1])]
+            t[0] = [FuncArg(t[1], t[3])]
     elif len(t) == 3:
         t[0] = t[2]
     else:
@@ -64,15 +65,15 @@ def p_return_type(t):
                     | BOOLEAN
                     | VOID
                     | LBRACKET var_type RBRACKET'''
-    if len(t) == 1:
-        t[0] = ('RETURN_TYPE', t[1].upper())
+    if len(t) == 2:
+        t[0] = t[1].upper()
     else:
-        t[0] = ('RETURN_TYPE', '['+t[2]+']')
+        t[0] = '['+t[2]+']'
 
 
 def p_block(t):
     'block : LBRACE recursive_statement RBRACE'
-    t[0] = ('BLOCK', t[2])
+    t[0] = Block(t[2])
 
 
 def p_recursive_statement(t):
@@ -91,12 +92,12 @@ def p_statement(t):
             | while_statement
             | variable_declaration
             | variable_assignment'''
-    t[0] = ('STATEMENT', t[1])
+    t[0] = t[1]
 
 
 def p_return_statement(t):  # return statement
     '''return_statement : RETURN ret_value SEMI'''
-    t[0] = ('RETURN', t[2])
+    t[0] = ReturnStatement(t[2])
 
 
 def p_ret_value(t):  # return value
@@ -108,31 +109,31 @@ def p_ret_value(t):  # return value
 
 def p_if_statement(t):  # if statement
     '''if_statement : IF expression block else_statement'''
-    t[0] = ('IF', t[2], t[3], t[4])
+    t[0] = IfStatement(t[2], t[3], t[4])
 
 
 def p_else_statement(t):  # else
     '''else_statement : ELSE block
                 | empty'''
     if len(t) == 3:
-        t[0] = ('ELSE', t[2])
+        t[0] = t[2]
     else:
-        t[0] = ('NO_ELSE')
+        t[0] = None
 
 
 def p_while_stmt(t):  # while statement
     '''while_statement : WHILE expression block'''
-    t[0] = ('WHILE', t[2], t[3])
+    t[0] = WhileStatement(t[2], t[3])
 
 
 def p_variable_declaration(t):  # variable declaration
     '''variable_declaration : ID COLON var_type EQUALS expression SEMI'''
-    t[0] = ('DECLARE_VAR', t[3], t[1], t[5])
+    t[0] = VarDeclaration(t[1], t[3], t[5])
 
 
 def p_variable_assignment(t):  # variable assignment
     '''variable_assignment : ID EQUALS expression SEMI'''
-    t[0] = ('ASSIGN', t[1], t[3])
+    t[0] = VarAssignment(t[1], t[3])
 
 
 def p_var_type(t):
@@ -171,17 +172,17 @@ def p_expression_binary_operation(t):
                                 | expression GE expression
                                 | expression EQ expression
                                 | expression NEQ expression'''
-    t[0] = ('BIN_OP', t[2], t[1], t[3])
+    t[0] = BinOp(t[2], t[1], t[3])
 
 
 def p_expression_variable(t):
     '''expression_variable : ID'''
-    t[0] = ('ID', t[1])
+    t[0] = ExprVar(t[1])
 
 
 def p_expression_unary_operation(t):
     '''expression_unary_operation : NOT expression'''
-    t[0] = ('UN_OP', t[1], t[2])
+    t[0] = UnOp(t[1], t[2])
 
 
 def p_expression_literal(t):
@@ -190,18 +191,18 @@ def p_expression_literal(t):
                 | STRING_LITERAL
                 | BOOLEAN_LITERAL'''
     if type(t[1]) == int:
-        t[0] = ('INT', t[1])
+        t[0] = ExprLiteral('INT', t[1])
     elif type(t[1]) == float:
-        t[0] = ('FLOAT', t[1])
+        t[0] = ExprLiteral('FLOAT', t[1])
     elif type(t[1]) == str:
-        t[0] = ('STRING', t[1])
+        t[0] = ExprLiteral('STRING', t[1])
     elif type(t[1]) == bool:
-        t[0] = ('BOOLEAN', t[1])
+        t[0] = ExprLiteral('BOOLEAN', t[1])
 
 
 def p_function_invocation(t):
     '''function_invocation : ID LPAREN func_invocation_args RPAREN'''
-    t[0] = ('FUNCTION_CALL', t[1], ('ARGS', t[3]))
+    t[0] = FuncInvocation(t[1], t[3])
 
 
 def p_func_invocation_args(t):
@@ -221,7 +222,7 @@ def p_func_invocation_args(t):
 
 def p_index_access(t):
     '''index_access : ID index_access_aux'''
-    t[0] = ('ARRAY_ACCESS', t[1], t[2])
+    t[0] = IndexAccess(t[1], t[2])
 
 
 def p_index_access_aux(t):
@@ -247,4 +248,5 @@ parser = yacc.yacc()
 ast = parser.parse(input_data)
 
 if ast:
-    print(ast)
+    for elem in ast:
+        print(elem)
