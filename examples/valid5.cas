@@ -1,6 +1,6 @@
-decl func ():Int
+decl func ():String
 decl func2 (a:Int):Int
 def func():String {
-    return;
+    return "preciso disto senao o return da erro de tipo";
 }
 decl func3 (a:Int, b:Int):Int

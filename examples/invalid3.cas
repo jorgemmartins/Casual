@@ -1,7 +1,10 @@
-#Invalid function declaration
-#No return type
-def func(){
-    while a < b{
-        a = a * b;
-    }
+#Bad returns
+def f():Int {
+  return; #<-- return requires an Int expression.
 }
+def f2():Void {
+  return "hello"; #<-- return should not have an expression.
+}
+def f3():Int {
+ return "hello"; #<-- return expression expects Int, found "hello":String.
+} 

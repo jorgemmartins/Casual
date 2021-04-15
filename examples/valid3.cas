@@ -1,6 +1,11 @@
 # this is a comment
-def test_index_access ():Void {
-  b = a[1];
-  b = mock_func(a,b)[b*b];
-  !a;
+def test_index_access (a:[Boolean]):Void {
+  b:Boolean = a[1];
+  b = mock_func(1,"ola")[2+2*3];
+  !a[1];
+}
+
+
+def mock_func(a:Int,b:String):[Boolean]{
+  return {true,false};
 }

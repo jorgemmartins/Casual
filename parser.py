@@ -187,18 +187,36 @@ def p_expression_unary_operation(t):
 
 
 def p_expression_literal(t):
-    '''expression_literal : FLOAT_LITERAL
+    '''expression_literal : LBRACE array_literal RBRACE
                 | INT_LITERAL
+                | FLOAT_LITERAL
                 | STRING_LITERAL
                 | BOOLEAN_LITERAL'''
     if type(t[1]) == int:
         t[0] = ExprLiteral('INT', t[1])
     elif type(t[1]) == float:
         t[0] = ExprLiteral('FLOAT', t[1])
+    elif t[1] == "{":
+        t[0] = ExprLiteral('ARRAY', t[2])
     elif type(t[1]) == str:
         t[0] = ExprLiteral('STRING', t[1])
     elif type(t[1]) == bool:
         t[0] = ExprLiteral('BOOLEAN', t[1])
+
+
+def p_array_literal(t):
+    '''array_literal : expression array_literal
+                    | COMMA array_literal
+                    | empty'''
+    if len(t) == 3 and t[1] != ',':
+        if t[2]:
+            t[0] = [(t[1])] + t[2]
+        else:
+            t[0] = [(t[1])]
+    elif len(t) == 3 and t[1] == ',':
+        t[0] = t[2]
+    else:
+        t[0] = []
 
 
 def p_function_invocation(t):

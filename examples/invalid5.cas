@@ -1,0 +1,8 @@
+def f2(a:[Int]):[Boolean]{
+    return {1,2,3}; #<--bad return
+}
+
+def f():[Boolean] {
+    b:[Boolean] = f2({1,2,3})[true]; #<--bad index
+    return b; 
+}

@@ -1,7 +1,9 @@
 def test_while ():Int {
-  a:Int = 1;
-  while true{
-      b:Int = 2;
+  a:Int = 10;
+  b:Int = 0;
+  while a > 0{
+      b = b + 1;
+      a = a - 1;
   }
-  return a;
+  return b%a;
 }

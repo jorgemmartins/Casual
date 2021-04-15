@@ -155,7 +155,7 @@ class ExprLiteral(object):
         self.literal = literal
 
     def __str__(self):
-        s = "("+self.literal_type+","+str(self.literal)+")"
+        s = str(self.literal)
         return s
 
 

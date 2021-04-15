@@ -4,4 +4,5 @@ def func():String{
     b:String = "fefwfewfw";
     c:Float = 3.2;
     d:Boolean = true;
+    e:[Int] = {1,2,3,2_432_12};
 }

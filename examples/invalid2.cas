@@ -1,5 +1,3 @@
-#Invalid function name
-#Parser will see a boolean
-def true():Int{
-    a = 1;
+def bad_assignment():Int{
+    a:Int = true;
 }
