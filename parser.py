@@ -3,11 +3,10 @@
 #############################################################
 ###################Jorge Martins fc51033#####################
 #############################################################
-import sys
 import ply.yacc as yacc
 from lexer import *
 from ast import *
-from semantic import verify, Context
+import sys
 
 file = open(sys.argv[1], 'r')
 input_data = file.read()
@@ -264,6 +263,3 @@ def p_error(t):
 
 
 parser = yacc.yacc()
-ast = parser.parse(input_data)
-
-verify(Context(), ast)
