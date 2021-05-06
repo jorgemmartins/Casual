@@ -58,4 +58,4 @@ Limitations:
 
   - Cannot create String arrays
   - Cannot create 2D+ arrays
-  - Cannot return arrays in functions
+  - Cannot return array types
