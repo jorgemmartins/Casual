@@ -1,4 +1,9 @@
+def teste ():[Int]{
+  return {1};
+}
+
 def main (argc:Int):Int {
-  a:[Int] = {1,2};
+  b:Int = teste()[0];
+  print(b);
   return 0;
 }

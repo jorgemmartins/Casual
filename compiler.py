@@ -15,6 +15,8 @@ var_types = {}
 
 func_types = {}
 
+array_size = {}
+
 
 class Emitter(object):
     def __init__(self):
@@ -153,7 +155,8 @@ def compile(ast, emitter=None):
             rr = "%" + emitter.get_id()
             emitter << f"   {rr} = alloca [{registo[1]} x {dict_types[aux]}]"
             emitter << f"   {pname} = bitcast [{registo[1]} x {dict_types[aux]}]* {rr} to i8*"
-            emitter << f"   call void @llvm.memcpy.p0i8.p0i8.i64(i8* {pname}, i8* bitcast ([{registo[1]} x {dict_types[aux]}]* {registo[0]} to i8*), i64 16, i1 false)"
+            array_size[pname] = registo[1]
+            emitter << f"   call void @llvm.memcpy.p0i8.p0i8.i64(i8* {pname}, i8* bitcast ([{registo[1]} x {dict_types[aux]}]* {registo[0]} to i8*), i64 {4*registo[1]}, i1 false)"
         else:
             emitter << f"   {pname} = alloca {dict_types[ast.var_type]}"
             emitter << f"   store {dict_types[ast.var_type]} {registo}, {dict_types[ast.var_type]}* {pname}"
@@ -280,6 +283,9 @@ def compile(ast, emitter=None):
         if len(ptype) == 2:
             return pname
         var_types[reg] = ptype
+        if ptype[0] == "[":
+            ptype = ptype.replace("[", "")
+            ptype = ptype.replace("]", "")
         emitter << f"   {reg} = load {dict_types[ptype]}, {dict_types[ptype]}* {pname}"
         return reg
     elif type(ast) == ExprLiteral:
@@ -299,11 +305,14 @@ def compile(ast, emitter=None):
             str_name = f"@.casual_arr_{id}"
             aux = ast.literal_type.replace("[", "")
             aux = aux.replace("]", "")
-            str_decl = f""" {str_name} = private unnamed_addr constant[{len(ast.literal)} x {dict_types[aux]}]["""  # i32 1, i32 2, i32 3]"""
+            str_decl = f""" {str_name} = private unnamed_addr constant[{len(ast.literal)} x {dict_types[aux]}]["""
             i = 0
             for pos in ast.literal:
                 r1 = compile(pos, emitter)
-                str_decl += f"{dict_types[aux]} {r1}"
+                if aux == "STRING":
+                    str_decl += f"{dict_types[aux]} {r1[0]}"
+                else:
+                    str_decl += f"{dict_types[aux]} {r1}"
                 if i != len(ast.literal)-1:
                     str_decl += ", "
                 i += 1
@@ -339,10 +348,25 @@ def compile(ast, emitter=None):
             var_types[nreg] = func_types["@"+ast.id]
             return nreg
         return
-    elif type(ast) == FuncArg:
-        return
     elif type(ast) == IndexAccess:
-        return
+        nreg = "%" + emitter.get_id()
+        ptype = None
+        try:
+            ptype = var_types[emitter.get_pointer_name(ast.id)]
+        except:
+            ptype = func_types["@"+ast.id]
+        if len(ptype) == 2:
+            ptype = ptype[0]
+        if ptype[0] == "[":
+            ptype = ptype.replace("[", "")
+            ptype = ptype.replace("]", "")
+        index = compile(ast.call_type, emitter)
+        rr = "%" + emitter.get_id()
+        rr2 = "%" + emitter.get_id()
+        emitter << f"   {rr} = bitcast i8* {emitter.get_pointer_name(ast.id)} to [{array_size[emitter.get_pointer_name(ast.id)]}  x {dict_types[ptype]}]*"
+        emitter << f"   {rr2} = getelementptr inbounds [{array_size[emitter.get_pointer_name(ast.id)]} x {dict_types[ptype]}], [{array_size[emitter.get_pointer_name(ast.id)]} x  {dict_types[ptype]}]* {rr}, i64 0, i64 {index}"
+        emitter << f"   {nreg} = load {dict_types[ptype]}, {dict_types[ptype]}* {rr2}"
+        return nreg
 
 
 def _printaux(emitter, val):

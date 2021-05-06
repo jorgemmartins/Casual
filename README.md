@@ -55,4 +55,4 @@ def max (a:Int, b:Int):Int {
 
 
 Issues:
-  - Currently it does not support arrays of array types
+  - Currently it does not support the compilation of arrays
