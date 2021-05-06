@@ -55,6 +55,7 @@ def compile(ast, emitter=None):
             compile(decl_or_def, emitter)
         return emitter.get_code()
     elif type(ast) == Decl:
+        # this is commented cause llvm does not let declaration and definition of same func
         # definition = "declare " + \
         #     dict_types[ast.return_type]+" @" + ast.id + "("
         # i = 0
@@ -366,6 +367,7 @@ def compile(ast, emitter=None):
         emitter << f"   {rr} = bitcast i8* {emitter.get_pointer_name(ast.id)} to [{array_size[emitter.get_pointer_name(ast.id)]}  x {dict_types[ptype]}]*"
         emitter << f"   {rr2} = getelementptr inbounds [{array_size[emitter.get_pointer_name(ast.id)]} x {dict_types[ptype]}], [{array_size[emitter.get_pointer_name(ast.id)]} x  {dict_types[ptype]}]* {rr}, i64 0, i64 {index}"
         emitter << f"   {nreg} = load {dict_types[ptype]}, {dict_types[ptype]}* {rr2}"
+        var_types[nreg] = ptype
         return nreg
 
 
