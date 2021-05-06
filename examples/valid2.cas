@@ -1,3 +1,5 @@
-def test (a:Int, b:Int):Void {
-  return ;
+decl lmao(num1:Int, num2:Float):Int
+
+def main (argc:Int):Int {
+  return argc;
 }

@@ -225,6 +225,7 @@ def verify(ctx: Context, ast):
             expr_type = verify(ctx, ast.expr)
             if expr_type != "BOOLEAN":
                 raise TypeError(f"A expressao {ast.expr} nao e boolean")
+            return expr_type
     elif type(ast) == ExprVar:
         name = ast.id
         if not ctx.has_var(name):
