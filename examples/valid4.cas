@@ -1,8 +1,21 @@
-def func():String{
+#var declaration and assignments for available types
+def main():Void{
     a:Int = 2;
-    a2:Int = 2_348724782_1;
-    b:String = "fefwfewfw";
-    c:Float = 3.2;
-    d:Boolean = true;
-    e:[Int] = {1,2,3,2_432_12};
+    b:Int = a;
+    print(b); #2
+    
+    c:Float = 3.14;
+    d:Float = c;
+    print(c); #3.14000
+
+    e:Boolean = true;
+    f:Boolean = 1 > 2;
+    g:Boolean = e && f;
+    print(c); #false
+
+    h:String = "Gostaria de um 20 por favor";
+    i:String = h;
+    print(i);
+
+    return;
 }

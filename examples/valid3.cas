@@ -1,11 +1,17 @@
 # this is a comment
-def test_index_access (a:[Boolean]):Void {
-  b:Boolean = a[1];
-  b = mock_func(1,"ola")[2+2*3];
-  !a[1];
+def test_while (a:Int):Int {
+  aux:Int = a;
+  res:Int = 0;
+  while aux > 0{
+    res = res + 1;
+    aux = aux - 1;
+  }
+  return res;
 }
 
 
-def mock_func(a:Int,b:String):[Boolean]{
-  return {true,false};
+def main():Void{
+  result:Int = test_while(10);
+  print(result);
+  return;
 }

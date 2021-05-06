@@ -1,7 +1,14 @@
-def test_if_else(a:Int,b:Int):[Int] {
+def test_if_else(a:Int,b:Int):Int {
+  res:Int = 0;
   if a < b{
-    return {a};
+    res = a;
   } else {
-    return {b};
+    res = b;
   }
+  return res;
+}
+
+def main():Void{
+  print(test_if_else(235,123));
+  return;
 }

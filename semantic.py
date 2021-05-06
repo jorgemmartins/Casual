@@ -115,16 +115,16 @@ def verify(ctx: Context, ast):
         actual = verify(ctx, ast.ret_value)
         if not actual:
             actual = "VOID"
-        if actual == "ARRAY" and len(ast.ret_value.literal) == 0:
-            actual = expected
-        if actual == "ARRAY" and len(ast.ret_value.literal) > 0:
-            tipo_do_array = verify(ctx, ast.ret_value.literal[0])
-            for i in range(1, len(ast.ret_value.literal)):
-                if verify(ctx, ast.ret_value.literal[i]) != tipo_do_array:
-                    tipo_do_array
-                    raise TypeError(
-                        f"Elementos do array devem ter o mesmo tipo")
-            actual = "[" + tipo_do_array + "]"
+        # if actual == "ARRAY" and len(ast.ret_value.literal) == 0:
+        #     actual = expected
+        # if actual == "ARRAY" and len(ast.ret_value.literal) > 0:
+        #     tipo_do_array = verify(ctx, ast.ret_value.literal[0])
+        #     for i in range(1, len(ast.ret_value.literal)):
+        #         if verify(ctx, ast.ret_value.literal[i]) != tipo_do_array:
+        #             tipo_do_array
+        #             raise TypeError(
+        #                 f"Elementos do array devem ter o mesmo tipo")
+        #     actual = "[" + tipo_do_array + "]"
         if actual != expected:
             raise TypeError(f"Return esperava {expected} mas recebe {actual}")
     elif type(ast) == IfStatement:
@@ -168,16 +168,16 @@ def verify(ctx: Context, ast):
             raise TypeError(f"Variavel {name} nao esta definida no contexto")
         var_type = ctx.get_type(name)
         assign_value = verify(ctx, ast.expr)
-        if assign_value == "ARRAY":
-            if len(ast.expr.literal) == 0 and var_type[0] == "[":
-                ctx.set_type(name, var_type)
-                return
-            tipo_do_array = verify(ctx, ast.expr.literal[0])
-            for i in range(1, len(ast.expr.literal)):
-                if verify(ctx, ast.expr.literal[i]) != tipo_do_array:
-                    raise TypeError(
-                        f"Elementos do array devem ter o mesmo tipo")
-            assign_value = "[" + tipo_do_array + "]"
+        # if assign_value == "ARRAY":
+        #     if len(ast.expr.literal) == 0 and var_type[0] == "[":
+        #         ctx.set_type(name, var_type)
+        #         return
+        #     tipo_do_array = verify(ctx, ast.expr.literal[0])
+        #     for i in range(1, len(ast.expr.literal)):
+        #         if verify(ctx, ast.expr.literal[i]) != tipo_do_array:
+        #             raise TypeError(
+        #                 f"Elementos do array devem ter o mesmo tipo")
+        #     assign_value = "[" + tipo_do_array + "]"
         if assign_value != var_type:
             raise TypeError(
                 f"Valor inicial para a variavel {name} invalido. Esperava {var_type} mas esta a ser atribuido um {assign_value}")
@@ -238,10 +238,11 @@ def verify(ctx: Context, ast):
         if ast.literal_type == "ARRAY" and len(ast.literal) > 0:
             tipo = verify(ctx, ast.literal[0])
             for i in range(1, len(ast.literal)):
-                if tipo != verify(ctx, ast.literal[i]):
+                curr = verify(ctx, ast.literal[i])
+                if tipo != curr and curr != "ARRAY":
                     raise TypeError(
                         f"Elementos do array devem ter o mesmo tipo")
-            return "["+verify(ctx, ast.literal[0])+"]"
+            ast.literal_type = "["+verify(ctx, ast.literal[0])+"]"
         return ast.literal_type
     elif type(ast) == FuncInvocation:
         name = ast.id
@@ -256,15 +257,15 @@ def verify(ctx: Context, ast):
         for i in range(len(ast.args)):
             expected = verify(ctx, func_data[2][i])
             actual = verify(ctx, ast.args[i])
-            if actual == "ARRAY" and len(ast.args[i].literal) == 0:
-                actual = expected
-            if actual == "ARRAY" and len(ast.args[i].literal) > 0:
-                tipo_do_array = verify(ctx, ast.args[i].literal[0])
-                for j in range(1, len(ast.args[i].literal)):
-                    if verify(ctx, ast.args[i].literal[j]) != tipo_do_array:
-                        raise TypeError(
-                            f"Elementos do array devem ter o mesmo tipo")
-                actual = "[" + tipo_do_array + "]"
+            # if actual == "ARRAY" and len(ast.args[i].literal) == 0:
+            #     actual = expected
+            # if actual == "ARRAY" and len(ast.args[i].literal) > 0:
+            #     tipo_do_array = verify(ctx, ast.args[i].literal[0])
+            #     for j in range(1, len(ast.args[i].literal)):
+            #         if verify(ctx, ast.args[i].literal[j]) != tipo_do_array:
+            #             raise TypeError(
+            #                 f"Elementos do array devem ter o mesmo tipo")
+            #     actual = "[" + tipo_do_array + "]"
             if expected != actual:
                 raise TypeError(
                     f"Diferente tipo de argumentos para a funcao {name} na posicao {i}. Esperava {expected} mas teve {actual}")
@@ -291,15 +292,15 @@ def verify(ctx: Context, ast):
             for i in range(len(tipo[2])):
                 expected = verify(ctx, tipo[2][i])
                 actual = verify(ctx, data[0][i])
-                if actual == "ARRAY" and len(data[0][i].literal) == 0:
-                    actual = expected
-                if actual == "ARRAY" and len(data[0][i].literal) > 0:
-                    tipo_do_array = verify(ctx, data[0][i].literal[0])
-                    for j in range(1, len(data[0][i].literal)):
-                        if verify(ctx, data[0][i].literal[j]) != tipo_do_array:
-                            raise TypeError(
-                                f"Elementos do array devem ter o mesmo tipo")
-                    actual = "[" + tipo_do_array + "]"
+                # if actual == "ARRAY" and len(data[0][i].literal) == 0:
+                #     actual = expected
+                # if actual == "ARRAY" and len(data[0][i].literal) > 0:
+                #     tipo_do_array = verify(ctx, data[0][i].literal[0])
+                #     for j in range(1, len(data[0][i].literal)):
+                #         if verify(ctx, data[0][i].literal[j]) != tipo_do_array:
+                #             raise TypeError(
+                #                 f"Elementos do array devem ter o mesmo tipo")
+                #     actual = "[" + tipo_do_array + "]"
                 if expected != actual:
                     raise TypeError(
                         f"Diferente tipo de argumentos para a funcao {name} na posicao {i}. Esperava {expected} mas teve {actual}")

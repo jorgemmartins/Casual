@@ -1,6 +1,4 @@
-decl lmao(num1:Int, num2:Float):Int
-
-def main (argc:Int):Void {
-  b:Int = 2;
-  return;
+def main (argc:Int):Int {
+  a:[Int] = {1,2};
+  return 0;
 }

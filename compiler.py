@@ -5,12 +5,15 @@
 #############################################################
 
 from ast import *
+import re
 
-dict_types = {"INT": "i32", "FLOAT": "float",
+dict_types = {"INT": "i32", "FLOAT": "double",
               "STRING": "i8*", "BOOLEAN": "i1", "VOID": "void"}
 
 
 var_types = {}
+
+func_types = {}
 
 
 class Emitter(object):
@@ -42,21 +45,25 @@ def compile(ast, emitter=None):
 
         emitter = Emitter()
         emitter << "declare i32 @printf(i8*, ...) #1"
+        emitter << "declare void @llvm.memcpy.p0i8.p0i8.i64(i8* noalias nocapture writeonly, i8* noalias nocapture readonly, i64, i1 immarg) #1"
+        for decl_or_def in ast:
+            func_types["@" + decl_or_def.id] = decl_or_def.return_type
+
         for decl_or_def in ast:
             compile(decl_or_def, emitter)
         return emitter.get_code()
     elif type(ast) == Decl:
-        definition = "declare " + \
-            dict_types[ast.return_type]+" @" + ast.id + "("
-        i = 0
-        for var in ast.args:
-            definition += dict_types[var.var_type] + \
-                " " + emitter.get_pointer_name(var.id)
-            if i != len(ast.args)-1:
-                definition += ", "
-            i += 1
-            var_types[emitter.get_pointer_name(var.id)] = (var.var_type, "arg")
-        emitter << definition + ") #1"
+        # definition = "declare " + \
+        #     dict_types[ast.return_type]+" @" + ast.id + "("
+        # i = 0
+        # for var in ast.args:
+        #     definition += dict_types[var.var_type] + \
+        #         " " + emitter.get_pointer_name(var.id)
+        #     if i != len(ast.args)-1:
+        #         definition += ", "
+        #     i += 1
+        #     var_types[emitter.get_pointer_name(var.id)] = (var.var_type, "arg")
+        # emitter << definition + ") #1"
         return
     elif type(ast) == Def:
         definition = "define " + \
@@ -82,7 +89,10 @@ def compile(ast, emitter=None):
             try:
                 ptype = var_types[registo]
             except:
-                ptype = ast.ret_value.literal_type
+                try:
+                    ptype = func_types["@"+registo]
+                except:
+                    ptype = ast.ret_value.literal_type
             if len(ptype) == 2:
                 ptype = ptype[0]
             emitter << f"   ret {dict_types[ptype]} {registo}"
@@ -108,10 +118,24 @@ def compile(ast, emitter=None):
             emitter << f"{label2[1:]}:"
             for stmt in ast.else_block.statements:
                 compile(stmt, emitter)
-            emitter << f"   br label {label3}"
+        emitter << f"   br label {label3}"
         emitter << f"{label3[1:]}:"
         return
     elif type(ast) == WhileStatement:
+        label1 = "%" + emitter.get_id()
+        label2 = "%" + emitter.get_id()
+        label3 = "%" + emitter.get_id()
+        emitter << f"   br label {label1}"
+        emitter << f"{label1[1:]}:"  # verificacao da guarda
+        registo = compile(ast.expr, emitter)
+        rr = "%" + emitter.get_id()
+        emitter << f"   {rr} = icmp ne i1 {registo}, 0"
+        emitter << f"   br i1 {rr}, label {label2}, label {label3}"
+        emitter << f"{label2[1:]}:"
+        for stmt in ast.block.statements:
+            compile(stmt, emitter)
+        emitter << f"   br label {label1}"
+        emitter << f"{label3[1:]}:"
         return
     elif type(ast) == VarDeclaration:
         pname = emitter.get_pointer_name(ast.id)
@@ -119,7 +143,17 @@ def compile(ast, emitter=None):
         var_types[pname] = ast.var_type
         if ast.var_type == "STRING":
             emitter << f"   {pname} = alloca {dict_types[ast.var_type]}"
-            emitter << f"   store {dict_types[ast.var_type]} getelementptr inbounds ([{registo[1]} x i8],[{registo[1]} x i8]* {registo[0]}, i64 0, i64 0), {dict_types[ast.var_type]}* {pname}"
+            if len(registo) == 2:
+                emitter << f"   store {dict_types[ast.var_type]} getelementptr inbounds ([{registo[1]} x i8],[{registo[1]} x i8]* {registo[0]}, i64 0, i64 0), {dict_types[ast.var_type]}* {pname}"
+            else:
+                emitter << f"   store {dict_types[ast.var_type]} {registo}, {dict_types[ast.var_type]}* {pname}"
+        elif ast.var_type[0] == "[":
+            aux = ast.var_type.replace("[", "")
+            aux = aux.replace("]", "")
+            rr = "%" + emitter.get_id()
+            emitter << f"   {rr} = alloca [{registo[1]} x {dict_types[aux]}]"
+            emitter << f"   {pname} = bitcast [{registo[1]} x {dict_types[aux]}]* {rr} to i8*"
+            emitter << f"   call void @llvm.memcpy.p0i8.p0i8.i64(i8* {pname}, i8* bitcast ([{registo[1]} x {dict_types[aux]}]* {registo[0]} to i8*), i64 16, i1 false)"
         else:
             emitter << f"   {pname} = alloca {dict_types[ast.var_type]}"
             emitter << f"   store {dict_types[ast.var_type]} {registo}, {dict_types[ast.var_type]}* {pname}"
@@ -129,8 +163,10 @@ def compile(ast, emitter=None):
         ptype = var_types[pname]
         registo = compile(ast.expr, emitter)
         if ptype == "STRING":
-            emitter << f"   store {dict_types[ptype]} getelementptr inbounds ([{registo[1]} x i8],[{registo[1]} x i8]* {registo[0]}, i64 0, i64 0), {dict_types[ptype]}* {pname}"
-            return
+            if len(registo) == 2:
+                emitter << f"   store {dict_types[ptype]} getelementptr inbounds ([{registo[1]} x i8],[{registo[1]} x i8]* {registo[0]}, i64 0, i64 0), {dict_types[ptype]}* {pname}"
+            else:
+                emitter << f"   store {dict_types[ptype]} {registo}, {dict_types[ptype]}* {pname}"
         else:
             emitter << f"   store {dict_types[ptype]} {registo}, {dict_types[ptype]}* {pname}"
         return
@@ -142,7 +178,12 @@ def compile(ast, emitter=None):
         try:
             ptype = var_types[r1]
         except:
-            ptype = ast.expr.literal_type
+            try:
+                ptype = func_types["@"+r1]
+            except:
+                ptype = ast.expr.literal_type
+        if len(ptype) == 2:
+            ptype = ptype[0]
 
         if ast.op == "+":
             if ptype == "INT":
@@ -208,7 +249,7 @@ def compile(ast, emitter=None):
             var_types[rr] = "BOOLEAN"
         elif ast.op == "==":
             if ptype == "INT" or ptype == "BOOLEAN":
-                emitter << f"   {rr} = icmp seq {dict_types[ptype]} {r1}, {r2}"
+                emitter << f"   {rr} = icmp eq {dict_types[ptype]} {r1}, {r2}"
             else:
                 emitter << f"   {rr} = fcmp oeq {dict_types[ptype]} {r1}, {r2}"
             var_types[rr] = "BOOLEAN"
@@ -253,45 +294,88 @@ def compile(ast, emitter=None):
             str_decl = f"""{str_name} = private unnamed_addr constant [{len(ast.literal)+1} x i8] c"{ast.literal}\\00" """
             emitter.lines.insert(0, str_decl)
             return (str_name, len(ast.literal)+1)
+        elif ast.literal_type[0] == "[":
+            id = emitter.get_id()
+            str_name = f"@.casual_arr_{id}"
+            aux = ast.literal_type.replace("[", "")
+            aux = aux.replace("]", "")
+            str_decl = f""" {str_name} = private unnamed_addr constant[{len(ast.literal)} x {dict_types[aux]}]["""  # i32 1, i32 2, i32 3]"""
+            i = 0
+            for pos in ast.literal:
+                r1 = compile(pos, emitter)
+                str_decl += f"{dict_types[aux]} {r1}"
+                if i != len(ast.literal)-1:
+                    str_decl += ", "
+                i += 1
+            str_decl += "]"
+            emitter.lines.insert(0, str_decl)
+            return (str_name, len(ast.literal))
         else:
             return str(ast.literal)
     elif type(ast) == FuncInvocation:
         if ast.id == "print":
-            id = emitter.get_id()
-            str_name = f"@.casual_str_{id}"
-
-            nreg = "%" + emitter.get_id()
-            reg = compile(ast.args[0], emitter)
-            ptype = None
-            try:
-                ptype = var_types[reg]
-            except:
-                ptype = ast.args[0].literal_type
-            if ptype == "STRING":
-                str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%s\\0A\\00" """
-                emitter.lines.insert(0, str_decl)
-                emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), [{reg[1]} x i8]* {reg[0]})"""
-            elif ptype == "INT":
-                str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%d\\0A\\00" """
-                emitter.lines.insert(0, str_decl)
-                emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), i32 {reg})"""
-            elif ptype == "FLOAT":
-                str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%f\\0A\\00" """
-                emitter.lines.insert(0, str_decl)
-                emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), double {reg})"""
-            elif ptype == "BOOLEAN":
-                if reg == "1":
-                    str_decl = f"""   {str_name} = private unnamed_addr constant [6 x i8] c"true\\0A\\00" """
-                    emitter.lines.insert(0, str_decl)
-                    emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* {str_name}, i64 0, i64 0))"""
-                else:
-                    str_decl = f"""   {str_name} = private unnamed_addr constant [7 x i8] c"false\\0A\\00" """
-                    emitter.lines.insert(0, str_decl)
-                    emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([7 x i8], [7 x i8]* {str_name}, i64 0, i64 0))"""
+            _printaux(emitter, ast.args[0])
         else:
-            return
+            nreg = "%" + emitter.get_id()
+            line = f"""   {nreg} = call {dict_types[func_types["@"+ast.id]]} {"@"+ast.id}("""
+            i = 0
+            for arg in ast.args:
+                r1 = compile(arg, emitter)
+                ptype = None
+                try:
+                    ptype = var_types[r1]
+                except:
+                    try:
+                        ptype = func_types["@"+r1]
+                    except:
+                        ptype = arg.literal_type
+                if len(ptype) == 2:
+                    ptype = ptype[0]
+                line += f"{dict_types[ptype]} {r1}"
+                if i != len(ast.args)-1:
+                    line += ", "
+                i += 1
+            emitter << line + ")"
+            var_types[nreg] = func_types["@"+ast.id]
+            return nreg
         return
     elif type(ast) == FuncArg:
         return
     elif type(ast) == IndexAccess:
         return
+
+
+def _printaux(emitter, val):
+    id = emitter.get_id()
+    str_name = f"@.casual_str_{id}"
+    nreg = "%" + emitter.get_id()
+    reg = compile(val, emitter)
+    ptype = None
+    try:
+        ptype = var_types[reg]
+    except:
+        try:
+            ptype = func_types["@"+reg]
+        except:
+            ptype = val.literal_type
+    if len(ptype) == 2:
+        ptype = ptype[0]
+    if ptype == "STRING":
+        str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%s\\0A\\00" """
+        emitter.lines.insert(0, str_decl)
+        if len(reg) == 2:
+            emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), [{reg[1]} x i8]* {reg[0]})"""
+        else:
+            emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), i8* {reg})"""
+    elif ptype == "INT":
+        str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%d\\0A\\00" """
+        emitter.lines.insert(0, str_decl)
+        emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), i32 {reg})"""
+    elif ptype == "FLOAT":
+        str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%f\\0A\\00" """
+        emitter.lines.insert(0, str_decl)
+        emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), double {reg})"""
+    elif ptype == "BOOLEAN":
+        str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%d\\0A\\00" """
+        emitter.lines.insert(0, str_decl)
+        emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), i1 {reg})"""
