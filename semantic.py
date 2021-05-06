@@ -235,6 +235,13 @@ def verify(ctx: Context, ast):
             raise TypeError(f"Variavel {name} nao esta definida no contexto")
         return ctx.get_type(name)
     elif type(ast) == ExprLiteral:
+        if ast.literal_type == "ARRAY" and len(ast.literal) > 0:
+            tipo = verify(ctx, ast.literal[0])
+            for i in range(1, len(ast.literal)):
+                if tipo != verify(ctx, ast.literal[i]):
+                    raise TypeError(
+                        f"Elementos do array devem ter o mesmo tipo")
+            return "["+verify(ctx, ast.literal[0])+"]"
         return ast.literal_type
     elif type(ast) == FuncInvocation:
         name = ast.id
