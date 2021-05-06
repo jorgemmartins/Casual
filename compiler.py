@@ -41,6 +41,7 @@ def compile(ast, emitter=None):
     if type(ast) == list and len(ast) > 0 and (type(ast[0]) == Decl or type(ast[0]) == Def):
 
         emitter = Emitter()
+        emitter << "declare i32 @printf(i8*, ...) #1"
         for decl_or_def in ast:
             compile(decl_or_def, emitter)
         return emitter.get_code()
@@ -88,6 +89,27 @@ def compile(ast, emitter=None):
 
         return
     elif type(ast) == IfStatement:
+        registo = compile(ast.expr, emitter)
+        rr = "%" + emitter.get_id()
+        label1 = "%" + emitter.get_id()
+        label2 = "%" + emitter.get_id()
+        label3 = "%" + emitter.get_id()
+        emitter << f"   {rr} = icmp ne i1 {registo}, 0"
+        if ast.else_block:
+            emitter << f"   br i1 {rr}, label {label1}, label {label2}"
+        else:
+            emitter << f"   br i1 {rr}, label {label1}, label {label3}"
+
+        emitter << f"{label1[1:]}:"
+        for stmt in ast.block.statements:
+            compile(stmt, emitter)
+        emitter << f"   br label {label3}"
+        if ast.else_block:
+            emitter << f"{label2[1:]}:"
+            for stmt in ast.else_block.statements:
+                compile(stmt, emitter)
+            emitter << f"   br label {label3}"
+        emitter << f"{label3[1:]}:"
         return
     elif type(ast) == WhileStatement:
         return
@@ -96,12 +118,8 @@ def compile(ast, emitter=None):
         registo = compile(ast.expr, emitter)
         var_types[pname] = ast.var_type
         if ast.var_type == "STRING":
-            id = emitter.get_id()
-            str_name = f"@.casual_str_{id}"
-            str_decl = f"""{str_name} = private unnamed_addr constant [{len(registo)+1} x i8] c"{registo}\\00" """
-            emitter.lines.insert(0, str_decl)
             emitter << f"   {pname} = alloca {dict_types[ast.var_type]}"
-            emitter << f"   store {dict_types[ast.var_type]} getelementptr inbounds ([{len(registo)+1} x i8],[{len(registo)+1} x i8]* {str_name}, i64 0, i64 0), {dict_types[ast.var_type]}* {pname}"
+            emitter << f"   store {dict_types[ast.var_type]} getelementptr inbounds ([{registo[1]} x i8],[{registo[1]} x i8]* {registo[0]}, i64 0, i64 0), {dict_types[ast.var_type]}* {pname}"
         else:
             emitter << f"   {pname} = alloca {dict_types[ast.var_type]}"
             emitter << f"   store {dict_types[ast.var_type]} {registo}, {dict_types[ast.var_type]}* {pname}"
@@ -111,11 +129,7 @@ def compile(ast, emitter=None):
         ptype = var_types[pname]
         registo = compile(ast.expr, emitter)
         if ptype == "STRING":
-            id = emitter.get_id()
-            str_name = f"@.casual_str_{id}"
-            str_decl = f"""{str_name} = private unnamed_addr constant [{len(registo)+1} x i8] c"{registo}\\00" """
-            emitter.lines.insert(0, str_decl)
-            emitter << f"   store {dict_types[ptype]} getelementptr inbounds ([{len(registo)+1} x i8],[{len(registo)+1} x i8]* {str_name}, i64 0, i64 0), {dict_types[ptype]}* {pname}"
+            emitter << f"   store {dict_types[ptype]} getelementptr inbounds ([{registo[1]} x i8],[{registo[1]} x i8]* {registo[0]}, i64 0, i64 0), {dict_types[ptype]}* {pname}"
             return
         else:
             emitter << f"   store {dict_types[ptype]} {registo}, {dict_types[ptype]}* {pname}"
@@ -233,9 +247,49 @@ def compile(ast, emitter=None):
                 return "1"
             else:
                 return "0"
+        elif ast.literal_type == "STRING":
+            id = emitter.get_id()
+            str_name = f"@.casual_str_{id}"
+            str_decl = f"""{str_name} = private unnamed_addr constant [{len(ast.literal)+1} x i8] c"{ast.literal}\\00" """
+            emitter.lines.insert(0, str_decl)
+            return (str_name, len(ast.literal)+1)
         else:
             return str(ast.literal)
     elif type(ast) == FuncInvocation:
+        if ast.id == "print":
+            id = emitter.get_id()
+            str_name = f"@.casual_str_{id}"
+
+            nreg = "%" + emitter.get_id()
+            reg = compile(ast.args[0], emitter)
+            ptype = None
+            try:
+                ptype = var_types[reg]
+            except:
+                ptype = ast.args[0].literal_type
+            if ptype == "STRING":
+                str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%s\\0A\\00" """
+                emitter.lines.insert(0, str_decl)
+                emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), [{reg[1]} x i8]* {reg[0]})"""
+            elif ptype == "INT":
+                str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%d\\0A\\00" """
+                emitter.lines.insert(0, str_decl)
+                emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), i32 {reg})"""
+            elif ptype == "FLOAT":
+                str_decl = f"""   {str_name} = private unnamed_addr constant [4 x i8] c"%f\\0A\\00" """
+                emitter.lines.insert(0, str_decl)
+                emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* {str_name}, i64 0, i64 0), double {reg})"""
+            elif ptype == "BOOLEAN":
+                if reg == "1":
+                    str_decl = f"""   {str_name} = private unnamed_addr constant [6 x i8] c"true\\0A\\00" """
+                    emitter.lines.insert(0, str_decl)
+                    emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([6 x i8], [6 x i8]* {str_name}, i64 0, i64 0))"""
+                else:
+                    str_decl = f"""   {str_name} = private unnamed_addr constant [7 x i8] c"false\\0A\\00" """
+                    emitter.lines.insert(0, str_decl)
+                    emitter << f"""   {nreg} = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([7 x i8], [7 x i8]* {str_name}, i64 0, i64 0))"""
+        else:
+            return
         return
     elif type(ast) == FuncArg:
         return

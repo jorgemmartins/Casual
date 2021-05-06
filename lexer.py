@@ -109,7 +109,10 @@ def t_STRING_LITERAL(t):
 def t_BOOLEAN_LITERAL(t):
     r'true|false'
     try:
-        t.value = bool(t.value)
+        if t.value == "true":
+            t.value = True
+        else:
+            t.value = False
     except ValueError:
         print("Not a boolean %b", t.value)
         t.value = ""

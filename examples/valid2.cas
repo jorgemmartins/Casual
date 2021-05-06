@@ -1,5 +1,12 @@
 decl lmao(num1:Int, num2:Float):Int
 
-def main (argc:Int):Int {
-  return argc;
+def main (argc:Int):Void {
+  a:Int = 1;
+  if false {
+    a = 2;
+  }else {
+    a = 3;
+  }
+  print(a);
+  return;
 }

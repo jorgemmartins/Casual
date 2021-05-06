@@ -56,6 +56,9 @@ def verify(ctx: Context, ast):
         for decl_or_def in ast:
             if type(decl_or_def) == Decl:
                 name = decl_or_def.id
+                if name == "print":
+                    raise TypeError(
+                        f"Funcao {name} eh nativa na linguagem e portanto nao pode ser redefinida/redeclarada")
                 if ctx.has_var(name):
                     raise TypeError(
                         f"Funcao {name} ja esta definida ou declarada no contexto")
@@ -235,6 +238,8 @@ def verify(ctx: Context, ast):
         return ast.literal_type
     elif type(ast) == FuncInvocation:
         name = ast.id
+        if name == "print":
+            return
         if not ctx.has_var(name):
             raise TypeError(f"Funcao {name} nao esta definida no contexto")
         func_data = ctx.get_type(name)
