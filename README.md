@@ -54,5 +54,8 @@ def max (a:Int, b:Int):Int {
   * function invocation (function(arg1, arg2)) where arguments can be expressions
 
 
-Issues:
-  - Currently it does not support the compilation of arrays
+Limitations:
+
+  - Cannot create String arrays
+  - Cannot create 2D+ arrays
+  - Cannot return arrays in functions
