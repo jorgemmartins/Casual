@@ -1,3 +1,7 @@
 *.ll
 *.s
 __pycache__/*
+*.aux
+*.log
+*.pdf
+*.synctex.gz
