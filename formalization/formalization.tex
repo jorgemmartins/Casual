@@ -151,17 +151,22 @@ EXPRESSION - LITERALS:
 -------- (T-Int)
 $\Gamma \, \vdash \, i:Int$
 
+
 -------- (T-Float)
 $\Gamma \, \vdash \, f:Float$
+
 
 -------- (T-BoolT)
 $\Gamma \, \vdash \, true:Boolean$
 
+
 -------- (T-BoolF)
 $\Gamma \, \vdash \, false:Boolean$
 
+
 -------- (T-String)
 $\Gamma \, \vdash \, s:String$
+
 
 -------- (T-Array)
 $\Gamma \, \vdash \, []:[T]$
@@ -179,97 +184,121 @@ $\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
 -------------------------(T-add-int)
 $\Gamma \, \vdash \, (E1 \, + \, E2):Int$
 
+
 $\Gamma \, \vdash \, E1:Float \quad\quad\quad \Gamma \, \vdash \, E2:Float$
 -------------------------(T-add-float)
 $\Gamma \, \vdash \, (E1 \, + \, E2):Float$
+
 
 $\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
 -------------------------(T-sub-int)
 $\Gamma \, \vdash \, (E1 \, - \, E2):Int$
 
+
 $\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
 -------------------------(T-sub-float)
 $\Gamma \, \vdash \, (E1 \, - \, E2):Float$
+
 
 $\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
 -------------------------(T-mult-int)
 $\Gamma \, \vdash \, (E1 \, * \, E2):Int$
 
+
 $\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
 -------------------------(T-mult-float)
 $\Gamma \, \vdash \, (E1 \, * \, E2):Float$
+
 
 $\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
 -------------------------(T-div-int)
 $\Gamma \, \vdash \, (E1 \, / \, E2):Int$
 
+
 $\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
 -------------------------(T-div-float)
 $\Gamma \, \vdash \, (E1 \, / \, E2):Float$
+
 
 $\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
 -------------------------(T-mod)
 $\Gamma \, \vdash \, (E1 \, \% \, E2):Int$
 
+
 $\Gamma \, \vdash \, E1:Boolean \quad\quad \Gamma \, \vdash \, E2:Boolean$
 ------------------------------(T-and)
 $\Gamma \, \vdash \, (E1 \, \&\& \, E2):Boolean$
+
 
 $\Gamma \, \vdash \, E1:Boolean \quad\quad \Gamma \, \vdash \, E2:Boolean$
 ------------------------------(T-or)
 $\Gamma \, \vdash \, (E1 \, || \, E2):Boolean$
 
+
 $\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
 --------------------------(T-lt-int)
 $\Gamma \, \vdash \, (E1 \, < \, E2):Boolean$
+
 
 $\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
 --------------------------(T-lt-float)
 $\Gamma \, \vdash \, (E1 \, < \, E2):Boolean$
 
+
 $\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
 --------------------------(T-gt-int)
 $\Gamma \, \vdash \, (E1 \, > \, E2):Boolean$
+
 
 $\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
 --------------------------(T-gt-float)
 $\Gamma \, \vdash \, (E1 \, > \, E2):Boolean$
 
+
 $\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
 --------------------------(T-le-int)
 $\Gamma \, \vdash \, (E1 \, <= \, E2):Boolean$
+
 
 $\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
 --------------------------(T-le-float)
 $\Gamma \, \vdash \, (E1 \, <= \, E2):Boolean$
 
+
 $\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
 --------------------------(T-ge-int)
 $\Gamma \, \vdash \, (E1 \, >= \, E2):Boolean$
+
 
 $\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
 --------------------------(T-ge-float)
 $\Gamma \, \vdash \, (E1 \, >= \, E2):Boolean$
 
+
 $\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
 --------------------------(T-eq-int)
 $\Gamma \, \vdash \, (E1 \, == \, E2):Boolean$
+
 
 $\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
 --------------------------(T-eq-float)
 $\Gamma \, \vdash \, (E1 \, == \, E2):Boolean$
 
+
 $\Gamma \, \vdash \, E1:Boolean \quad\quad \Gamma \, \vdash \, E2:Boolean$
 ------------------------------(T-eq-bool)
 $\Gamma \, \vdash \, (E1 \, == \, E2):Boolean$
+
 
 $\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
 --------------------------(T-neq-int)
 $\Gamma \, \vdash \, (E1 \, != \, E2):Boolean$
 
+
 $\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
 --------------------------(T-neq-float)
 $\Gamma \, \vdash \, (E1 \, != \, E2):Boolean$
+
 
 $\Gamma \, \vdash \, E1:Boolean \quad\quad \Gamma \, \vdash \, E2:Boolean$
 ------------------------------(T-neq-bool)
@@ -299,15 +328,8 @@ $\Gamma \, \vdash \, (E1\,[E2]):T$
 $H \, ::= \, . \, | \, H, \, x \mapsto c$
 \end{lstlisting}
 \subsection*{Auxiliary Functions}
-I use Haskell notation to define the following functions:
 \begin{lstlisting}
-I used the Haskell function ++ that append 2 arrays together in the rule
-<<.(example: [1] ++ [2] = [1,2]) 
-
-
-replace :: [T] -> U -> [U]
-replace [] _ = []
-replace (old:tail) new = new:(replace tail new)
+For basic operations(+,-,*,...) I used the same symbols;
 
 lookup :: Heap -> String -> Int
 lookup . x = 0
@@ -317,22 +339,126 @@ lookup (H, x ? c) y
 \end{lstlisting}
 \subsection*{Language Semantic(Big Step)}
 \begin{lstlisting}
+PROGRAM:
+
+DECLARATION:
+
+DEFINITION:
+
+BLOCK:
+
+STATEMENT - RETURN:
+
+STATEMENT - IF:
+
+STATEMENT - WHILE:
+
+STATEMENT - VAR DECLARATION:
+
+STATEMENT - VAR ASSIGNMENT:
+
+EXPRESSION - LITERALS:
+
 --------------(array)
 $H;[\,]\Downarrow [\,]$
 
+
 -------------- (int)
 $H;i\Downarrow i$
+
+
+-------------- (float)
+$H;f\Downarrow f$
+
+
+-------------- (string)
+$H;s\Downarrow s$
+
+
+-------------- (boolean)
+$H;b\Downarrow b$
+
+
+EXPRESSION - VARIABLE:
 
 lookup H x = c
 -------------- (var)
 $H;x\Downarrow c$
 
-$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
-------------------- (<<)
-$H;(e1<<e2)\Downarrow(c1\, ++\, [c2])$
+EXPRESSION - BINARY OPERATIONS:
 
 $H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
------------------------ (#)
-$H;(e1\#x\rightarrow e2)\Downarrow(replace\, c1\, c2)$
+------------------- (add)
+$H;(e1+e2)\Downarrow(c1\, +\, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (sub)
+$H;(e1-e2)\Downarrow(c1\, -\, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (mult)
+$H;(e1*e2)\Downarrow(c1\, *\, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (div)
+$H;(e1/e2)\Downarrow(c1\, / \, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (mod)
+$H;(e1\%e2)\Downarrow(mod\, c1\, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (and)
+$H;(e1\&\&e2)\Downarrow(c1\, \&\& \, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (or)
+$H;(e1||e2)\Downarrow(c1\, || \, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (lt)
+$H;(e1<e2)\Downarrow(c1\, < \, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (gt)
+$H;(e1>e2)\Downarrow(c1\, > \, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (le)
+$H;(e1<=e2)\Downarrow(c1\, <= \, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (ge)
+$H;(e1>=e2)\Downarrow(c1\, >= \, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (eq)
+$H;(e1==e2)\Downarrow(c1\, == \, c2)$
+
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (neq)
+$H;(e1!=e2)\Downarrow(c1\, != \, c2)$
+
+EXPRESSION - UNARY OPERATIONS:
+
+$H;e1\Downarrow c1$
+------------------- (not)
+$H;(!e1)\Downarrow(!c1)$
+
+EXPRESSION - FUNCTION INVOCATION:
+
+EXPRESSION - INDEX ACCESS:
 \end{lstlisting}
 \end{document}
