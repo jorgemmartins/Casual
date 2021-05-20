@@ -4,7 +4,12 @@
 \usepackage[latin1]{inputenc}
 \usepackage{geometry}
 \usepackage{listings}
+\usepackage{xcolor,listings,lscape}
 \usepackage{graphicx}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
 \usepackage{float}
 \author{Jorge Martins fc51033\\
 University of Lisbon, Portugal}
@@ -15,6 +20,319 @@ University of Lisbon, Portugal}
 \thispagestyle{empty}
 \newpage
 \section{Grammar}
+\begin{lstlisting}
+PROGRAM -> DECLARATION PROGRAM
+PROGRAM -> DEFINITION PROGRAM
+PROGRAM -> 
+
+DECLARATION -> decl id ( FUNC_ARGS ) : RETURN_TYPE
+DEFINITION -> def id ( FUNC_ARGS ) : RETURN_TYPE BLOCK
+
+FUNC_ARGS -> id : VAR_TYPE FUNC_ARGS
+FUNC_ARGS -> , FUNC_ARGS
+FUNC_ARGS ->
+
+RETURN_TYPE -> int
+RETURN_TYPE -> float
+RETURN_TYPE -> string
+RETURN_TYPE -> boolean
+RETURN_TYPE -> void
+RETURN_TYPE -> [ VAR_TYPE ]
+
+BLOCK -> { RECURSIVE_STATEMENT }
+
+RECURSIVE_STATEMENT -> STATEMENT RECURSIVE_STATEMENT
+RECURSIVE_STATEMENT ->
+
+STATEMENT -> RETURN_STATEMENT
+STATEMENT -> EXPRESSION ;
+STATEMENT -> IF_STATEMENT
+STATEMENT -> WHILE_STATEMENT
+STATEMENT -> VAR_DECL
+STATEMENT -> VAR_ASSIGN
+
+RETURN_STATEMENT -> return RET_VALUE ;
+
+RET_VALUE -> EXPRESSION
+RET_VALUE ->
+
+IF_STATEMENT -> if EXPRESSION BLOCK ELSE_STATEMENT
+ELSE_STATEMENT -> else BLOCK
+ELSE_STATEMENT ->
+
+WHILE_STATEMENT -> while EXPRESSION BLOCK
+
+VAR_DECL -> id : VAR_TYPE = EXPRESSION ;
+VAR_ASSIGN -> id = EXPRESSION ; 
+
+VAR_TYPE -> float
+VAR_TYPE -> int
+VAR_TYPE -> string
+VAR_TYPE -> boolean
+VAR_TYPE -> [ VAR_TYPE ]
+
+EXPRESSION -> EXPR_BIN_OP
+EXPRESSION -> EXPR_UN_OP
+EXPRESSION -> EXPR_LITERAL
+EXPRESSION -> EXPR_VAR
+EXPRESSION -> EXPR_FUNC_CALL
+EXPRESSION -> EXPR_INDEX_ACCESS
+
+EXPR_BIN_OP -> EXPRESSION + EXPRESSION
+EXPR_BIN_OP -> EXPRESSION - EXPRESSION
+EXPR_BIN_OP -> EXPRESSION * EXPRESSION
+EXPR_BIN_OP -> EXPRESSION / EXPRESSION
+EXPR_BIN_OP -> EXPRESSION % EXPRESSION
+EXPR_BIN_OP -> EXPRESSION && EXPRESSION
+EXPR_BIN_OP -> EXPRESSION || EXPRESSION
+EXPR_BIN_OP -> EXPRESSION < EXPRESSION
+EXPR_BIN_OP -> EXPRESSION > EXPRESSION
+EXPR_BIN_OP -> EXPRESSION <= EXPRESSION
+EXPR_BIN_OP -> EXPRESSION >= EXPRESSION
+EXPR_BIN_OP -> EXPRESSION == EXPRESSION
+EXPR_BIN_OP -> EXPRESSION != EXPRESSION
+
+EXPR_UN_OP -> ! EXPRESSION
+
+EXPR_VAR -> id
+
+EXPR_LITERAL -> { ARRAY_LIT }\\
+EXPR_LITERAL -> int_lit
+EXPR_LITERAL -> float_lit
+EXPR_LITERAL -> string_lit
+EXPR_LITERAL -> bool_lit
+
+ARRAY_LIT -> EXPRESSION ARRAY_LIT
+ARRAY_LIT -> , ARRAY_LIT
+ARRAY_LIT -> 
+
+EXPR_FUNC_CALL -> id ( FUNC_CALL_ARGS )
+FUNC_CALL_ARGS -> EXPRESSION FUNC_CALL_ARGS
+FUNC_CALL_ARGS -> , FUNC_CALL_ARGS
+FUNC_CALL_ARGS -> 
+
+EXPR_INDEX_ACCESS -> id EXPR_INDEX_ACCESS_AUX
+EXPR_INDEX_ACCESS_AUX -> [ EXPRESSION ]
+EXPR_INDEX_ACCESS_AUX -> ( FUNC_CALL_ARGS ) [ EXPRESSION ]
+
+\end{lstlisting}
 \section{Type Checking}
+\subsection*{Types}
+\begin{lstlisting}
+T :== Int | Float | Boolean | String | [T] | Void
+\end{lstlisting}
+\subsection*{Context}
+\begin{lstlisting}
+$\Gamma :== \varepsilon$
+    $|\quad\Gamma, x:T$
+\end{lstlisting}
+\subsection*{Typechecking Rules}
+\begin{lstlisting}
+PROGRAM:
+
+DECLARATION:
+
+DEFINITION:
+
+BLOCK:
+
+STATEMENT - RETURN:
+
+STATEMENT - IF:
+
+STATEMENT - WHILE:
+
+STATEMENT - VAR DECLARATION:
+
+STATEMENT - VAR ASSIGNMENT:
+
+EXPRESSION - LITERALS:
+
+-------- (T-Int)
+$\Gamma \, \vdash \, i:Int$
+
+-------- (T-Float)
+$\Gamma \, \vdash \, f:Float$
+
+-------- (T-BoolT)
+$\Gamma \, \vdash \, true:Boolean$
+
+-------- (T-BoolF)
+$\Gamma \, \vdash \, false:Boolean$
+
+-------- (T-String)
+$\Gamma \, \vdash \, s:String$
+
+-------- (T-Array)
+$\Gamma \, \vdash \, []:[T]$
+
+EXPRESSION - VARIABLE:
+
+$x:T \, \in \, \Gamma$
+-------------- (T-Var)
+$\Gamma \, \vdash \, x:T$
+
+
+EXPRESSION - BINARY OPERATIONS:
+
+$\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
+-------------------------(T-add-int)
+$\Gamma \, \vdash \, (E1 \, + \, E2):Int$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad\quad \Gamma \, \vdash \, E2:Float$
+-------------------------(T-add-float)
+$\Gamma \, \vdash \, (E1 \, + \, E2):Float$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
+-------------------------(T-sub-int)
+$\Gamma \, \vdash \, (E1 \, - \, E2):Int$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
+-------------------------(T-sub-float)
+$\Gamma \, \vdash \, (E1 \, - \, E2):Float$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
+-------------------------(T-mult-int)
+$\Gamma \, \vdash \, (E1 \, * \, E2):Int$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
+-------------------------(T-mult-float)
+$\Gamma \, \vdash \, (E1 \, * \, E2):Float$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
+-------------------------(T-div-int)
+$\Gamma \, \vdash \, (E1 \, / \, E2):Int$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
+-------------------------(T-div-float)
+$\Gamma \, \vdash \, (E1 \, / \, E2):Float$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad\quad \Gamma \, \vdash \, E2:Int$
+-------------------------(T-mod)
+$\Gamma \, \vdash \, (E1 \, \% \, E2):Int$
+
+$\Gamma \, \vdash \, E1:Boolean \quad\quad \Gamma \, \vdash \, E2:Boolean$
+------------------------------(T-and)
+$\Gamma \, \vdash \, (E1 \, \&\& \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Boolean \quad\quad \Gamma \, \vdash \, E2:Boolean$
+------------------------------(T-or)
+$\Gamma \, \vdash \, (E1 \, || \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
+--------------------------(T-lt-int)
+$\Gamma \, \vdash \, (E1 \, < \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
+--------------------------(T-lt-float)
+$\Gamma \, \vdash \, (E1 \, < \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
+--------------------------(T-gt-int)
+$\Gamma \, \vdash \, (E1 \, > \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
+--------------------------(T-gt-float)
+$\Gamma \, \vdash \, (E1 \, > \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
+--------------------------(T-le-int)
+$\Gamma \, \vdash \, (E1 \, <= \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
+--------------------------(T-le-float)
+$\Gamma \, \vdash \, (E1 \, <= \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
+--------------------------(T-ge-int)
+$\Gamma \, \vdash \, (E1 \, >= \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
+--------------------------(T-ge-float)
+$\Gamma \, \vdash \, (E1 \, >= \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
+--------------------------(T-eq-int)
+$\Gamma \, \vdash \, (E1 \, == \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
+--------------------------(T-eq-float)
+$\Gamma \, \vdash \, (E1 \, == \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Boolean \quad\quad \Gamma \, \vdash \, E2:Boolean$
+------------------------------(T-eq-bool)
+$\Gamma \, \vdash \, (E1 \, == \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
+--------------------------(T-neq-int)
+$\Gamma \, \vdash \, (E1 \, != \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Float \quad\quad \Gamma \, \vdash \, E2:Float$
+--------------------------(T-neq-float)
+$\Gamma \, \vdash \, (E1 \, != \, E2):Boolean$
+
+$\Gamma \, \vdash \, E1:Boolean \quad\quad \Gamma \, \vdash \, E2:Boolean$
+------------------------------(T-neq-bool)
+$\Gamma \, \vdash \, (E1 \, != \, E2):Boolean$
+
+EXPRESSION - UNARY OPERATIONS:
+
+$\Gamma \, \vdash \, E1:Boolean$
+------------------(T-not)
+$\Gamma \, \vdash \, (!E1):Boolean$
+
+EXPRESSION - FUNCTION INVOCATION:
+
+$f:T \, \in \, \Gamma$
+-------------- (T-Func-Call)
+$\Gamma \, \vdash \, f:T$
+
+EXPRESSION - INDEX ACCESS:
+
+$\Gamma \, \vdash \, E1:[T] \quad\quad \Gamma \, \vdash \, E2:Int$
+------------------------ (T-Index-Access)
+$\Gamma \, \vdash \, (E1\,[E2]):T$
+\end{lstlisting}
 \section{Operational Semantics}
+\subsection*{Heap}
+\begin{lstlisting}
+$H \, ::= \, . \, | \, H, \, x \mapsto c$
+\end{lstlisting}
+\subsection*{Auxiliary Functions}
+I use Haskell notation to define the following functions:
+\begin{lstlisting}
+I used the Haskell function ++ that append 2 arrays together in the rule
+<<.(example: [1] ++ [2] = [1,2]) 
+
+
+replace :: [T] -> U -> [U]
+replace [] _ = []
+replace (old:tail) new = new:(replace tail new)
+
+lookup :: Heap -> String -> Int
+lookup . x = 0
+lookup (H, x ? c) y
+  | x == y = c
+  | otherwise = lookup H y
+\end{lstlisting}
+\subsection*{Language Semantic(Big Step)}
+\begin{lstlisting}
+--------------(array)
+$H;[\,]\Downarrow [\,]$
+
+-------------- (int)
+$H;i\Downarrow i$
+
+lookup H x = c
+-------------- (var)
+$H;x\Downarrow c$
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+------------------- (<<)
+$H;(e1<<e2)\Downarrow(c1\, ++\, [c2])$
+
+$H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
+----------------------- (#)
+$H;(e1\#x\rightarrow e2)\Downarrow(replace\, c1\, c2)$
+\end{lstlisting}
 \end{document}
