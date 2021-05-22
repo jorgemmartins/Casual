@@ -19,6 +19,16 @@ University of Lisbon, Portugal}
 \maketitle
 \thispagestyle{empty}
 \newpage
+\section{Terminal Symbols}
+\begin{lstlisting}
+float -> (\d*)?[.]\d+
+int -> \d((_|\d)*\d)?
+boolean -> true|false
+string -> \"([^\\\"]|\\.)*\"
+id -> [a-zA-Z_][a-zA-Z0-9_]*
+\end{lstlisting}
+Any other terminal symbol in the grammar corresponds 
+exactly to how it is written.
 \section{Grammar}
 \begin{lstlisting}
 PROGRAM -> DECLARATION PROGRAM
@@ -337,7 +347,7 @@ lookup (H, x ? c) y
   | x == y = c
   | otherwise = lookup H y
 \end{lstlisting}
-\subsection*{Language Semantic(Big Step)}
+\subsection*{Language Semantic}
 \begin{lstlisting}
 PROGRAM:
 
@@ -351,11 +361,33 @@ STATEMENT - RETURN:
 
 STATEMENT - IF:
 
+$H;e\Downarrow c  \quad\quad c/=0$
+----------------------(if1)
+$H\,|\, if \;e\; s1 \; s2;s\rightarrow H;s1;s$
+
+$H;e\Downarrow c  \quad\quad c=0$
+----------------------(if2)
+$H\,|\, if \;e\; s1 \; s2;s\rightarrow H;s2;s$
+
 STATEMENT - WHILE:
 
-STATEMENT - VAR DECLARATION:
+$H;e\Downarrow c  \quad\quad c=0$
+----------------------(while1)
+$H\,|\, while \;e\; s1;s \rightarrow H;s$
 
+$H;e\Downarrow c  \quad\quad c/=0$
+----------------------(while2)
+$H\,|\, while \;e\; s1;s \rightarrow H;s1;while \;e\; s1;s$
+
+STATEMENT - VAR DECLARATION:
+$H;e\Downarrow c$
+----------------------(var-decl)
+$H\,|\, x := e; s \rightarrow H, x \mapsto c\, |\, s$
 STATEMENT - VAR ASSIGNMENT:
+
+$H, x \mapsto c;e\Downarrow c2$
+----------------------(var-assign)
+$H\,|\, x := e; s \rightarrow H, x \mapsto c2 \,|\, s$
 
 EXPRESSION - LITERALS:
 
