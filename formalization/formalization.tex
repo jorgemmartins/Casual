@@ -139,6 +139,52 @@ $\Gamma :== \varepsilon$
 \subsection*{Typechecking Rules}
 \begin{lstlisting}
 
+DECLARATION:
+
+----------------------- (Def-Valid)
+$\Gamma \, \vdash \, def \;id \;(args):return\_type:valid$
+
+
+
+
+DEFINITION:
+
+----------------------- (Def-Valid)
+$\Gamma \, \vdash \, def \;id \;(args):return\_type\{Block\}:valid$
+
+STATEMENT - RETURN:
+
+$x:T \in \Gamma$
+----------------------- (Return-Valid)
+$\Gamma \, \vdash \, return \;x:valid$
+
+STATEMENT - IF:
+
+$x:Boolean \in \Gamma$
+----------------------- (If-Valid)
+$\Gamma \, \vdash \, if\; x\; \{Block\}:valid$
+
+$x:Boolean \in \Gamma$
+----------------------- (Ifelse-Valid)
+$\Gamma \, \vdash \, if\; x\; \{Block\}\; else \;\{Block\}:valid$
+
+STATEMENT - WHILE:
+
+$x:Boolean \in \Gamma$
+----------------------- (While-Valid)
+$\Gamma \, \vdash \, while\; x\; \{Block\}:valid$
+
+STATEMENT - VAR DECLARATION:
+
+----------------------- (Var-Decl-Valid)
+$\Gamma \, \vdash \, (x:T := v:T):valid$
+
+STATEMENT - VAR ASSIGNMENT:
+
+$x:T \in \Gamma$
+----------------------- (Var-Assign-Valid)
+$\Gamma \, \vdash \, (x := v:T):valid$
+
 EXPRESSION - LITERALS:
 
 -------- (T-Int)
@@ -226,6 +272,8 @@ $\Gamma \, \vdash \, (E1 \, \&\& \, E2):Boolean$
 $\Gamma \, \vdash \, E1:Boolean \quad\quad \Gamma \, \vdash \, E2:Boolean$
 ------------------------------(T-or)
 $\Gamma \, \vdash \, (E1 \, || \, E2):Boolean$
+
+
 
 
 $\Gamma \, \vdash \, E1:Int \quad\quad \Gamma \, \vdash \, E2:Int$
@@ -356,6 +404,7 @@ STATEMENT - VAR DECLARATION:
 $H;e\Downarrow c$
 ----------------------(var-decl)
 $H\,|\, x := e; s \rightarrow H, x \mapsto c\, |\, s$
+
 STATEMENT - VAR ASSIGNMENT:
 
 $H, x \mapsto c;e\Downarrow c2$
@@ -395,6 +444,8 @@ EXPRESSION - BINARY OPERATIONS:
 $H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
 ------------------- (add)
 $H;(e1+e2)\Downarrow(c1\, +\, c2)$
+
+
 
 
 $H;e1\Downarrow c1\;\;\;\;\;\;\;\;H;e2\Downarrow c2$
