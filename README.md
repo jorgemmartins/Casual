@@ -1,4 +1,4 @@
-# Casual Programming Language
+# Casual Programming Language.
 Casual is a programming language designed to be as simple as possible, while being user-friendly.
 
 # How to use the parser
